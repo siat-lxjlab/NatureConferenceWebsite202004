@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="card shadow-lg bg-light border-0">
+        <!-- <div class="card-header">
+          Log in
+        </div> -->
+        <div class="card-body">
+        <!-- <h3 class="header">Please sign in</h3>
+        <header class="my-3"></header> -->
+        <form action="" method="post">
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-user"></i></span>
+              </div>
+              <input type="text" class="form-control" name="name" id="name" placeholder="Name" required>
+            </div>
+          </div>  
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+              </div>
+              <input type="text" class="form-control" name="email" id="email" placeholder="Email" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-phone"></i></span>
+              </div>
+              <input type="text" class="form-control" name="phone" id="phone" placeholder="Phone" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-building"></i></span>
+              </div>
+              <input type="text" class="form-control" name="workplace" id="workplace" placeholder="Company or School" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-id-card"></i></span>
+              </div>
+              <!-- <input  class="form-control" name="title" id="title" placeholder="" required> -->
+              <select class="custom-select form-control" name="title" id="title" required>
+                <option value="0">Choose...</option>
+                <option value="1">Student</option>
+                <option value="2">Teacher</option>
+                <option value="3">Businessman</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-user"></i></span>
+              </div>
+              <input type="text" class="form-control" name="username" id="username" placeholder="Username" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-key"></i></span>
+              </div>
+              <input type="password" class="form-control" name="password" id="password" placeholder="Password" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-key"></i></span>
+              </div>
+              <input type="password" class="form-control" name="repassword" id="repassword" placeholder="Confirm Password" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-secondary btn-block">Register</button>
+          </div>
+          <div class="form-group">
+            <a class="btn btn-light btn-block" href="/auth/login">Back</a>
+          </div>
+        </form>
+        </div>
+        <div class="card-footer">
+            {% for message in get_flashed_messages() %}
+            <span class="text-danger">{{ message }}</span>
+            {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
