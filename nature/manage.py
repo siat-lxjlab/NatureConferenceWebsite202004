@@ -32,3 +32,17 @@ def person():
     db = get_db()
     return render_template('manage/person.html')
 
+@bp.route('/fee')
+def pay():
+    db = get_db()
+    return render_template('manage/fee.html')
+
+@bp.route('/submit')
+def submit():
+    db = get_db()
+    return render_template('manage/submit.html')
+
+@bp.route('/registration')
+def update_registration():
+    db = get_db()
+    return render_template('manage/registration.html')
