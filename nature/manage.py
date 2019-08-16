@@ -7,7 +7,7 @@ from werkzeug.exceptions import abort
 from nature.auth import login_required
 from nature.db import get_db
 
-bp = Blueprint('manage', __name__, url_prefix='/admin')
+bp = Blueprint('manage', __name__, url_prefix='/my')
 
 @bp.before_app_request
 def load_logged_in_user():
@@ -26,4 +26,9 @@ def load_logged_in_user():
 def index():
     db = get_db()
     return render_template('manage/index.html')
+
+@bp.route('/info')
+def person():
+    db = get_db()
+    return render_template('manage/person.html')
 
