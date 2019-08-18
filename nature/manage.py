@@ -24,7 +24,6 @@ def load_logged_in_user():
 @bp.route('/')
 @login_required
 def index():
-    db = get_db()
     return render_template('manage/index.html')
 
 @bp.route('/info')

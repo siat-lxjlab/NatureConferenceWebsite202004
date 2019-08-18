@@ -41,7 +41,55 @@
       </nav>
   
       <main role="main" class="col-md-9 ml-sm-auto col-lg-9 px-4">
-
+        <div class="row justify-content-center">
+          <div class="card shadow-lg bg-light border-0">
+            <!-- <div class="card-header">
+              Log in
+            </div> -->
+            <div class="card-body">
+            <!-- <h3 class="header">Please sign in</h3>
+            <header class="my-3"></header> -->
+            <form action="" method="post">
+              <div class="form-group">
+                <div class="input-group">
+                  <!-- <label for="username">Username</label> -->
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                  </div>
+                  <input type="text" class="form-control" name="username" id="username" placeholder="Username" required>
+                </div>
+              </div>  
+              <div class="form-group">
+                <!-- <label for="password">Password</label> -->
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-key"></i></span>
+                  </div>
+                  <input type="password" class="form-control" name="password" id="password" placeholder="Password" required>
+                </div>
+              </div>
+              <hr>
+              <div class="form-group">
+                <button type="submit" class="btn btn-secondary btn-block">Login</button>
+              </div>
+            </form>
+            <div class="form-group">
+              <div class="input-group">
+                <a class="btn btn-light btn-block" href="/auth/register">
+                  <!-- <i class="fas fa-registered"></i> -->
+                  Submit
+                </a>
+              </div>
+              <!-- <span class="badge badge-info" href="#">Don't have an account yet?<a class="badge badge-info" href="#">Register</a>here.</span> -->
+            </div>
+            </div>
+            <div class="card-footer">
+              {% for message in get_flashed_messages() %}
+              <span class="text-danger">{{ message }}</span>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
       </main>
     </div>
   </div>
