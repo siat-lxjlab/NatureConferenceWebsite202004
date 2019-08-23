@@ -52,12 +52,20 @@
                     </tr>
                   </thead>
                   <tbody>
+                  {% if abstract %}
                     <tr>
-                      <th scope="row"></th>
-                      <td>Mark</td>
-                      <td>Otto</td>
-                      <td>@mdo</td>
+                      <th><a class="btn btn-danger" href="/upload/delete?id={{abstract['id']}}">Delete</a></th>
+                      <td><span class="btn btn-light">{{abstract['filename']}}</span></td>
+                      <td><span class="btn btn-light">{{abstract['created']}}</span></td>
+                      <td><span class="btn btn-light">
+                          {% if abstract['state']=="1" %} 
+                            审核通过
+                          {% else %}
+                            待审核
+                          {% endif %}
+                        </span></td>
                     </tr>
+                    {% endif %}
                   </tbody>
                 </table>         
           </div>        

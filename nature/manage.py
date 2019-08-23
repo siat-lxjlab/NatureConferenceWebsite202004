@@ -85,7 +85,7 @@ def person():
 @bp.route('/fee')
 @login_required
 def pay():
-    db = get_db()
+    # db = get_db()
     # db.execute()
     return render_template('manage/fee.html')
 
@@ -93,9 +93,12 @@ def pay():
 @bp.route('/submit')
 @login_required
 def submit():
+    user_id = session.get('user_id')
     db = get_db()
-    # db.execute()
-    return render_template('manage/submit.html')
+    abstract = db.execute(
+        'SELECT id, filename, created, state FROM abstract WHERE user_id = ?', (user_id,)
+    ).fetchone() 
+    return render_template('manage/submit.html', abstract = abstract)
 
 
 # @bp.route('/registration')

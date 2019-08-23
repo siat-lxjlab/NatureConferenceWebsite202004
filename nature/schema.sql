@@ -13,6 +13,14 @@ CREATE TABLE user (
     title TEXT NOT NULL
 );
 
+CREATE TABLE abstract (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    filename TEXT UNIQUE NOT NULL,
+    created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    state INTEGER NOT NULL,
+    user_id INTEGER NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES user (id)
+);
 
 
 CREATE TABLE invoice (

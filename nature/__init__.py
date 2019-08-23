@@ -3,7 +3,7 @@ from flask import (
     Blueprint, Flask, flash, g, redirect, render_template, request, url_for, session
 )
 from werkzeug.utils import secure_filename
-
+from nature.db import get_db
 
 UPLOAD_FOLDER = os.path.curdir + os.path.sep + 'Abstract' + os.path.sep
 ALLOWED_EXTENSIONS = set(['pdf'])
@@ -41,8 +41,43 @@ def create_app(test_config=None):
         return '.' in filename and \
             filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
+
+    @app.route('/upload/delete', methods=['GET'])
+    def delete_upload_file():
+        user_id = session.get('user_id')
+        if user_id is None:
+            return redirect(url_for('auth.login'))
+        abstract_id = request.args.get('id')
+        db = get_db()
+        abstract = db.execute(
+            'SELECT filename FROM abstract WHERE id = ?', (abstract_id,)
+        ).fetchone()
+        if abstract is not None:
+            filename = abstract['filename']
+            try:
+                os.remove(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            except Exception as e:
+                print(e.__str__ )
+            db.execute(
+                'Delete FROM abstract WHERE id = ?', (abstract_id,)
+            )
+            db.commit()
+            return redirect(url_for('manage.submit'))
+        return redirect(url_for('manage.submit'))
+
+
     @app.route('/upload', methods=['GET', 'POST'])
     def upload_file():
+        user_id = session.get('user_id')
+        if user_id is None:
+            return render_template('/auth/login.html')
+        db = get_db()
+        test = db.execute(
+            'SELECT id FROM abstract WHERE user_id = ?', (user_id,)
+                ).fetchone() 
+        if test is not None:
+            flash('Can\'t repeat upload')  
+            return redirect('/my/submit')
         if request.method == 'POST':
             # check if the post request has the file part
             if 'file' not in request.files:
@@ -56,8 +91,13 @@ def create_app(test_config=None):
                 return redirect(request.url)
             if file and allowed_file(file.filename):
                 filename = secure_filename(file.filename)
+                db.execute(
+                    'INSERT INTO abstract (user_id, filename, state) VALUES(?, ?, ?)' ,
+                    (user_id, filename, 0)
+                )
+                db.commit()
                 file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-                return render_template('/manage/submit.html')
+                return redirect('/my/submit')
         return render_template('/manage/submit.html')
 
 
@@ -65,7 +105,7 @@ def create_app(test_config=None):
     db.init_app(app)    
     app.register_blueprint(auth.bp)
 
-    from . import manage
+    from . import manage        
     app.register_blueprint(manage.bp)
     app.add_url_rule('/manage', endpoint='index')
 
