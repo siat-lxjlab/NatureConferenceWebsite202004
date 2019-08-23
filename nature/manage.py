@@ -1,12 +1,12 @@
 import functools
 import re
 from flask import (
-    Blueprint, flash, g, redirect, render_template, request, url_for, session
+    Blueprint, Flask, flash, g, redirect, render_template, request, url_for, session
 )
 from werkzeug.exceptions import abort
-
 from nature.auth import login_required
 from nature.db import get_db
+
 
 bp = Blueprint('manage', __name__, url_prefix='/my')
 
@@ -98,9 +98,9 @@ def submit():
     return render_template('manage/submit.html')
 
 
-@bp.route('/registration')
-@login_required
-def update_registration():
-    db = get_db()
-    # db.execute()
-    return render_template('manage/registration.html')
+# @bp.route('/registration')
+# @login_required
+# def update_registration():
+#     db = get_db()
+#     # db.execute()
+#     return render_template('manage/registration.html')

@@ -24,12 +24,12 @@
                 <span class="badge-light">My Submission</span> 
               </a>
             </li>
-            <li class="nav-item mb-1 mt-1 text-left">
+            <!-- <li class="nav-item mb-1 mt-1 text-left">
               <a class="nav-link btn-block" href="registration">
                 <i class="fas fa-registered"></i>&nbsp;
                 <span class="badge-light">Conference Registration</span> 
               </a>
-            </li>
+            </li> -->
             <li class="nav-item mb-1 mt-1 text-left">
               <a class="nav-link btn-block"  href="fee">
                 <i class="fas fa-comments-dollar"></i>&nbsp;
@@ -41,8 +41,88 @@
       </nav>
   
       <main role="main" class="col-md-9 ml-sm-auto col-lg-9 px-4">
-
+          <div class="row mt-5">
+              <table class="table table-striped shadow-lg">
+                  <thead class="table-primary">
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Filename</th>
+                      <th scope="col">Datetime</th>
+                      <th scope="col">State</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row"></th>
+                      <td>Mark</td>
+                      <td>Otto</td>
+                      <td>@mdo</td>
+                    </tr>
+                  </tbody>
+                </table>         
+          </div>        
+        <div class="row justify-content-center mt-3 mb-3">
+        <form action="/upload" method="POST" enctype="multipart/form-data">
+          <div class="card shadow-lg bg-light border-0">
+            <div class="card-header">
+              Abstract Upload
+            </div>
+            <div class="card-body">
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-file-upload"></i></span>
+                  </div>
+                  <div class="custom-file">
+                    <input type="file" name="file" class="custom-file-input" id="customFile">
+                    <label class="custom-file-label" for="customFile">Choose file</label>
+                  </div>
+                </div>
+                <div class="input-group">
+                    <small class="form-text text-muted">The file type must be PDF. If upload successfully, you can see the file in the table above.</small>
+                </div>
+              </div>
+              <div class="form-group">
+                  <div class="input-group">
+                    <button type="submit" id="upload" class="btn btn-light btn-block">
+                      Submit
+                    </button>
+                  </div>
+                  <!-- <span class="badge badge-info" href="#">Don't have an account yet?<a class="badge badge-info" href="#">Register</a>here.</span> -->
+                </div>              
+              </div>
+              <div class="card-footer">
+                  {% for message in get_flashed_messages() %}
+                  <span class="text-danger">{{ message }}</span>
+                  {% endfor %}
+              </div>
+            </div>
+          </div>
+          </form>
+        </div>
       </main>
     </div>
   </div>
+  <script>
+  $(document).ready(function() {
+  $('input[type="file"]').on("change", function() {
+    let filenames = [];
+    let files = document.getElementById("customFile").files;
+    if (files.length > 1) {
+      // filenames.push("Total Files (" + files.length + ")");
+      return;
+    } else {
+      for (let i in files) {
+        if (files.hasOwnProperty(i)) {
+          filenames.push(files[i].name);
+        }
+      }
+    }
+    $(this)
+      .next(".custom-file-label")
+      .html(filenames.join(","));
+  });
+});
+
+  </script>
 {% endblock %}
