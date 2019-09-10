@@ -1,3 +1,38 @@
-body,button, input, select, textarea,h1 ,h2, h3, h4, h5, h6{
-    font-family: "Microsoft YaHei", "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+body,a,button,p,span,div
+{
+    font-family: Arial, Helvetica, sans-serif;
+}
+/* define the style for the link in navbar */
+li.nav-item a {
+    font-size: 1em;
+    font-weight: 500;
+    text-decoration: none;
+    color:rgb(122, 146, 190);
+}
+
+li.nav-item a:hover {
+    color:rgb(67, 107, 236)
+}
+
+.jumbotron {
+    background: #FFF;
+}
+    
+
+button{
+    display: inline-block;
+    color: white;
+    font-weight: 500;
+    transition: color .15s ease-in-out,
+                background-color .15s ease-in-out,
+                border-color .15s ease-in-out,
+                box-shadow .15s ease-in-out
+}
+
+.lift {
+    transition: box-shadow .25s ease, transform .25s ease;
+}
+
+.sub-title{
+    color: rgb(119, 204, 199);
 }
