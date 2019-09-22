@@ -1,0 +1,48 @@
+{% extends 'speaker.html' %}
+
+{% block speaker %}
+<div class="row">
+    <div class="col-lg-4 col-md-6 col-sm-12 p-3">
+        <div class="card shadow">
+            <img src="{{url_for('static', filename='img/ArtoVNurmikko.jpg')}}" class="card-img-top" alt="...">
+            <div class="card-body text-center">
+                <p>Arto V.Nurmikko</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-6 col-sm-12 p-3">
+        <div class="card shadow">
+            <img src="{{url_for('static', filename='img/CharlesMLieber.jpg')}}" class="card-img-top" alt="...">
+            <div class="card-body text-center">
+                <p>Charles M.Lieber</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-6 col-sm-12 p-3">
+        <div class="card shadow">
+            <img src="{{url_for('static', filename='img/JohnRogers.jpg')}}" class="card-img-top" alt="...">
+            <div class="card-body text-center">
+                <p>John A.Rogers</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4 col-md-6 col-sm-12 p-3">
+        <div class="card shadow">
+            <img src="{{url_for('static', filename='img/Nicolelis.jpg')}}" class="card-img-top" alt="...">
+            <div class="card-body text-center">
+                <p>Miguel Nicolelis</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-6 col-sm-12 p-3">
+        <div class="card shadow">
+            <img src="{{url_for('static', filename='img/zhenanBao.jpg')}}" class="card-img-top" alt="...">
+            <div class="card-body text-center">
+                <p>Zhenan Bao</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

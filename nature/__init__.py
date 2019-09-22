@@ -1,12 +1,34 @@
 import os
 from flask import (
-    Blueprint, Flask, flash, g, redirect, render_template, request, url_for, session
+    Blueprint, Flask, flash, g, redirect, render_template, request, url_for, session, abort
 )
 from werkzeug.utils import secure_filename
 from nature.db import get_db
 
 UPLOAD_FOLDER = os.path.curdir + os.path.sep + 'Abstract' + os.path.sep
 ALLOWED_EXTENSIONS = set(['pdf'])
+
+'''
+    1 - Arnd Pralle
+    2 - Arto V.Nurmikko
+    3 - Charles M.Lieber
+    4 - Dae-Hyeong Kim
+    5 - Daryl Kipke
+    6 - Gaurav Sharma
+    7 - George Malliaras
+    8 - Grégoire Courtine
+    9 - John Rogers
+    10 - Kullervo Hynynen
+    11 - Kristin Zhao
+    12 - Lee E Miller
+    13 - Leigh Hochberg
+    14 - Miguel Nicolelis
+    15 - Serge Picaud
+    16 - Tamar Makin    
+    17 - Xiaojie Duan 
+    18 - Xinyan Tracy Cui
+    19 - Zhenan Bao
+'''
 
 def create_app(test_config=None):
     # create and configure the app
@@ -37,6 +59,26 @@ def create_app(test_config=None):
     @app.route('/index')
     def index():
         return render_template('index.html')
+
+    @app.route('/speakers')
+    def get_speakers():
+        return render_template('speaker.html')
+
+    @app.route('/speakers/leading')
+    def get_leadingspeakers():
+        return render_template('speakers/leading.html')
+
+    @app.route('/speakers/part/<int:part_num>')
+    def get_speakers_bypart(part_num):
+        if part_num < 1 or part_num > 4:
+            abort(404) 
+        return render_template('speakers/part%d.html'%part_num)
+
+    @app.route('/speakers/<int:speaker_num>')
+    def get_speaker_bynum(speaker_num):
+        if speaker_num > 19 or speaker_num < 1:
+            abort(404) 
+        return render_template('speakers/%d.html'%speaker_num)
 
     def allowed_file(filename):
         return '.' in filename and \

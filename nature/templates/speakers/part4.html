@@ -1,0 +1,39 @@
+{% extends 'speaker.html' %}
+
+{% block speaker %}
+<div class="row">
+    <div class="col-lg-4 col-md-6 col-sm-12 p-3">
+        <div class="card shadow">
+            <img src="{{url_for('static', filename='img/6.png')}}" class="card-img-top" alt="...">
+            <div class="card-body text-center">
+                <p>Gaurav Sharma</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-6 col-sm-12 p-3">
+        <div class="card shadow">
+            <img src="{{url_for('static', filename='img/12.png')}}" class="card-img-top" alt="...">
+            <div class="card-body text-center">
+                <p>Lee E Miller</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-6 col-sm-12 p-3">
+        <div class="card shadow">
+            <img src="{{url_for('static', filename='img/13.png')}}" class="card-img-top" alt="...">
+            <div class="card-body text-center">
+                <p>Leigh Hochberg</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-6 col-sm-12 p-3">
+        <div class="card shadow">
+            <img src="{{url_for('static', filename='img/14.png')}}" class="card-img-top" alt="...">
+            <div class="card-body text-center">
+                <p>Miguel Nicolelis</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
