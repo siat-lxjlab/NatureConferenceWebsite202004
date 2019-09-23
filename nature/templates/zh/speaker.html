@@ -1,0 +1,71 @@
+{% extends 'zh/base.html' %}
+
+{% block content %}
+<div class="container container-index w-100 h-100 shadow-sm">
+    <div class="row">
+        <div class="col-4">
+            <nav id="navbar-guest" class="navbar navbar-light bg-light flex-column mt-3 mb-3 ml-2">
+                <ul class="nav flex-column">
+                    <li class="divider mt-3">
+                        演讲嘉宾
+                    </li>
+                    <li class="nav-item parent">
+                        <a href="/zh/speakers/leading">领衔嘉宾</a>
+                        <ul class="nav flex-column p-2 sub-menu border-top">
+                            <li class="nav-item"><a href="/zh/speakers/2">Arto V.Nurmikko</a></li>
+                            <li class="nav-item"><a href="/zh/speakers/3">Charles M.Lieber</a></li>
+                            <li class="nav-item"><a href="/zh/speakers/9">John Rogers</a></li>
+                            <li class="nav-item"><a href="/zh/speakers/14">Miguel Nicolelis</a></li>
+                            <li class="nav-item"><a href="/zh/speakers/19">鲍哲南</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item parent">
+                        <a href="/zh/speakers/part/1">一 生物电子界面专题</a>
+                        <ul class="nav flex-column p-2 sub-menu border-top">
+                            <li class="nav-item"><a href="/zh/speakers/3">Charles M.Lieber</a></li>
+                            <li class="nav-item"><a href="/zh/speakers/4">Dae-Hyeong Kim</a></li>
+                            <li class="nav-item"><a href="/zh/speakers/7">George Malliaras</a></li>
+                            <li class="nav-item"><a href="/zh/speakers/17">段小洁</a></li>
+                            <li class="nav-item"><a href="/zh/speakers/18">Xinyan Tracy Cui</a></li>
+                            <li class="nav-item"><a href="/zh/speakers/19">鲍哲南</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item parent">
+                        <a href="/zh/speakers/part/2">二 神经调控专题</a>
+                        <ul class="nav flex-column p-2 sub-menu border-top">
+                            <li class="nav-item"><a href="/zh/speakers/1">Arnd Pralle</a></li>
+                            <li class="nav-item"><a href="/zh/speakers/2">Arto V.Nurmikko</a></li>
+                            <li class="nav-item"><a href="/zh/speakers/5">Daryl Kipke</a></li>
+                            <li class="nav-item"><a href="/zh/speakers/10">Kullervo Hynynen</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item parent">
+                        <a href="/zh/speakers/part/3">三 神经假肢专题</a>
+                        <ul class="nav flex-column p-2 sub-menu border-top">
+                            <li class="nav-item"><a href="/zh/speakers/8">Grégoire Courtine</a></li>
+                            <li class="nav-item"><a href="/zh/speakers/9">John Rogers</a></li>
+                            <li class="nav-item"><a href="/zh/speakers/11">Kristin Zhao</a></li>
+                            <li class="nav-item"><a href="/zh/speakers/15">Serge Picaud</a></li>
+                            <li class="nav-item"><a href="/zh/speakers/16">Tamar Makin</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item parent">
+                        <a href="/zh/speakers/part/4">四 脑机接口专题</a>
+                        <ul class="nav flex-column p-2 sub-menu border-top">
+                            <li class="nav-item"><a href="/zh/speakers/6">Gaurav Sharma</a></li>
+                            <li class="nav-item"><a href="/zh/speakers/12">Lee E Miller</a></li>
+                            <li class="nav-item"><a href="/zh/speakers/13">Leigh Hochberg</a></li>
+                            <li class="nav-item"><a href="/zh/speakers/14">Miguel Nicolelis</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div class="col-8 mt-3 p-3">
+            {% block speaker %}
+            {% endblock %}
+        </div>
+    </div>
+</div>
+{% endblock %}

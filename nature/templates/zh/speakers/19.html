@@ -1,0 +1,21 @@
+{% extends 'zh/speaker.html' %}
+
+{% block speaker %}
+<div class="card mt-5 shadow-sm">
+    <div class="row no-gutters">
+        <div class="col-md-4 col-lg-3 col-sm-6 p-3 bg-secondary">
+            <img src="{{url_for('static', filename='img/19.png')}}" class="card-img img-fluid" alt="...">
+        </div>
+        <div class="col-md-8 col-lg-9 col-sm-6 p-3 bg-light">
+            <h5>鲍哲南</h5>
+            <p>美国斯坦福大学化学工程系
+                K. K. Lee 冠名教授、系主任。
+                <strong>美国国家工程院院士，美国国家发明家学院院士</strong>。
+                斯坦福可穿戴电子创新会创始人和现任主任。
+                Precourt Institute, Woods Institute, ChEM-H and Bio-X等高科技创新机构成员。
+                C3 Nano Co. 和PyrAmes等高科技公司创始人。
+                </p>            
+        </div>
+    </div>
+</div>
+{% endblock %}

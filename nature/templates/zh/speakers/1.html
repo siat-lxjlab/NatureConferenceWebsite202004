@@ -1,0 +1,17 @@
+{% extends 'zh/speaker.html' %}
+
+{% block speaker %}
+<div class="card mt-5 shadow-sm">
+    <div class="row no-gutters">
+        <div class="col-md-4 col-lg-3 col-sm-6 p-3 bg-secondary">
+            <img src="{{url_for('static', filename='img/1.png')}}" class="card-img img-fluid" alt="...">
+        </div>
+        <div class="col-md-8 col-lg-9 col-sm-6 p-3 bg-light">
+            <h5>Arnd Pralle</h5>
+            <p>美国布法罗大学物理学系教授。
+                主要研究领域：细胞生物物理、超显微成像、磁遗传学、磁热神经刺激技术。
+                </p>
+        </div>
+    </div>
+</div>
+{% endblock %}

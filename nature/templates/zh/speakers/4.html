@@ -1,0 +1,20 @@
+{% extends 'zh/speaker.html' %}
+
+{% block speaker %}
+<div class="card mt-5 shadow-sm">
+    <div class="row no-gutters">
+        <div class="col-md-4 col-lg-3 col-sm-6 p-3 bg-secondary">
+            <img src="{{url_for('static', filename='img/4.png')}}" class="card-img img-fluid" alt="...">
+        </div>
+        <div class="col-md-8 col-lg-9 col-sm-6 p-3 bg-light">
+            <h5>
+                Dae-Hyeong Kim
+            </h5>
+            <p>
+                韩国首尔国立大学化学与生物工程学院副教授。
+基础科学与化学过程研究所纳米粒子研究中心成员。
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}

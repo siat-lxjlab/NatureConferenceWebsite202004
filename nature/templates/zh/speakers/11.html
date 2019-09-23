@@ -1,0 +1,17 @@
+{% extends 'zh/speaker.html' %}
+
+{% block speaker %}
+<div class="card mt-5 shadow-sm">
+    <div class="row no-gutters">
+        <div class="col-md-4 col-lg-3 col-sm-6 p-3 bg-secondary">
+            <img src="{{url_for('static', filename='img/11.png')}}" class="card-img img-fluid" alt="...">
+        </div>
+        <div class="col-md-8 col-lg-9 col-sm-6 p-3 bg-light">
+            <h5>Kristin Zhao</h5>
+            <p>美国梅奥诊所理疗与康复中心副教授。
+                主要研究方向：通过多种创新技术研究骨骼肌肉系统的发病机理，研发早期诊断工具和为残障人士设计介入治疗方案。
+                </p>            
+        </div>
+    </div>
+</div>
+{% endblock %}

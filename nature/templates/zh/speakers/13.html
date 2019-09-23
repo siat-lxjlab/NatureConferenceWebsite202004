@@ -1,0 +1,19 @@
+{% extends 'zh/speaker.html' %}
+
+{% block speaker %}
+<div class="card mt-5 shadow-sm">
+    <div class="row no-gutters">
+        <div class="col-md-4 col-lg-3 col-sm-6 p-3 bg-secondary">
+            <img src="{{url_for('static', filename='img/13.png')}}" class="card-img img-fluid" alt="...">
+        </div>
+        <div class="col-md-8 col-lg-9 col-sm-6 p-3 bg-light">
+            <h5>Leigh Hochberg</h5>
+            <p>美国麻省总医院神经病学系神经技术和神经恢复中心主任。
+                美国布朗大学工程学教授。
+                美国普罗维登斯医学中心神经恢复和神经技术中心主任。
+                主要研究领域：研发用于治疗麻痹和神经紊乱病患的新型神经技术。
+                </p>            
+        </div>
+    </div>
+</div>
+{% endblock %}

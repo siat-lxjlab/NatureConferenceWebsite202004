@@ -1,0 +1,39 @@
+{% extends 'zh/speaker.html' %}
+
+{% block speaker %}
+<div class="row">
+    <div class="col-lg-4 col-md-6 col-sm-12 p-3">
+        <div class="card shadow">
+            <img src="{{url_for('static', filename='img/1.png')}}" class="card-img-top" alt="...">
+            <div class="card-body text-center">
+                <p>Arnd Pralle</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-6 col-sm-12 p-3">
+        <div class="card shadow">
+            <img src="{{url_for('static', filename='img/2.png')}}" class="card-img-top" alt="...">
+            <div class="card-body text-center">
+                <p>Arto V.Nurmikko</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-6 col-sm-12 p-3">
+        <div class="card shadow">
+            <img src="{{url_for('static', filename='img/5.png')}}" class="card-img-top" alt="...">
+            <div class="card-body text-center">
+                <p>Daryl Kipke</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-6 col-sm-12 p-3">
+        <div class="card shadow">
+            <img src="{{url_for('static', filename='img/10.png')}}" class="card-img-top" alt="...">
+            <div class="card-body text-center">
+                <p>Kullervo Hynynen</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

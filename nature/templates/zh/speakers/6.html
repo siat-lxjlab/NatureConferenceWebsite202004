@@ -1,0 +1,17 @@
+{% extends 'zh/speaker.html' %}
+
+{% block speaker %}
+<div class="card mt-5 shadow-sm">
+    <div class="row no-gutters">
+        <div class="col-md-4 col-lg-3 col-sm-6 p-3 bg-secondary">
+            <img src="{{url_for('static', filename='img/6.png')}}" class="card-img img-fluid" alt="...">
+        </div>
+        <div class="col-md-8 col-lg-9 col-sm-6 p-3 bg-light">
+            <h5>Gaurav Sharma</h5>
+            <p>美国 Battelle 纪念研究所资深研究员。
+                主要研究领域：介入式医疗技术和器械。包括运动康复和跨血脑屏障药物递送技术。领导多项创新性神经调控技术的研发并推动产业转化。
+                </p>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'zh/speaker.html' %}
+
+{% block speaker %}
+<div class="card mt-5 shadow-sm">
+    <div class="row no-gutters">
+        <div class="col-md-4 col-lg-3 col-sm-6 p-3 bg-secondary">
+            <img src="{{url_for('static', filename='img/3.png')}}" class="card-img img-fluid" alt="...">
+        </div>
+        <div class="col-md-8 col-lg-9 col-sm-6 p-3 bg-light">
+            <h5>Charles M.Lieber</h5>
+            <p>
+                美国哈佛大学化学与化学生物学系
+Joshua and Beth Friedman University 冠名教授（哈佛大学最高级别）、系主任。
+<strong>美国国家科学院院士，美国国家医学院院士，美国文理学院院士</strong>。
+纳米材料合成、表征和在纳米电子、纳米计算、生物化学传感以及神经生物和纳米光子领域的研究先驱。
+Nanosys, Inc. 和 Vista Therapeutics 等纳米技术高科技公司的创始人。
+
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'zh/speaker.html' %}
+
+{% block speaker %}
+<div class="card mt-5 shadow-sm">
+    <div class="row no-gutters">
+        <div class="col-md-4 col-lg-3 col-sm-6 p-3 bg-secondary">
+            <img src="{{url_for('static', filename='img/2.png')}}" class="card-img img-fluid" alt="...">
+        </div>
+        <div class="col-md-8 col-lg-9 col-sm-6 p-3 bg-light">
+            <h5>Arto V.Nurmikko</h5>
+            <p>美国布朗大学L. Herbert Ballou University冠名工程学教授，物理学教授。
+                <strong>美国国家科学院院士，美国文理院院士</strong>。
+                主要研究领域：神经工程、光子学、微电子学和纳米科学，以及在物理和生命科学中的转化应用，特别是植入式神经界面技术。
+                </p>
+        </div>
+    </div>
+</div>
+{% endblock %}

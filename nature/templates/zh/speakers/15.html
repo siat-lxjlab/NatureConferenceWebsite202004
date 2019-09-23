@@ -1,0 +1,17 @@
+{% extends 'zh/speaker.html' %}
+
+{% block speaker %}
+<div class="card mt-5 shadow-sm">
+    <div class="row no-gutters">
+        <div class="col-md-4 col-lg-3 col-sm-6 p-3 bg-secondary">
+            <img src="{{url_for('static', filename='img/15.png')}}" class="card-img img-fluid" alt="...">
+        </div>
+        <div class="col-md-8 col-lg-9 col-sm-6 p-3 bg-light">
+            <h5>Serge Picaud</h5>
+            <p>法国视觉研究所所长。
+                主要研究方向：视网膜信息处理，包括药理，毒理和病理学研究。Fovea Pharmaceuticals, Pixium Vision 等高科技医疗技术公司创始人。
+                </p>            
+        </div>
+    </div>
+</div>
+{% endblock %}

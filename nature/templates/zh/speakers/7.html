@@ -1,0 +1,19 @@
+{% extends 'zh/speaker.html' %}
+
+{% block speaker %}
+<div class="card mt-5 shadow-sm">
+    <div class="row no-gutters">
+        <div class="col-md-4 col-lg-3 col-sm-6 p-3 bg-secondary">
+            <img src="{{url_for('static', filename='img/7.png')}}" class="card-img img-fluid" alt="...">
+        </div>
+        <div class="col-md-8 col-lg-9 col-sm-6 p-3 bg-light">
+            <h5>George Malliaras</h5>
+            <p>英国剑桥大学Prince Philip 冠名教授。
+                2006-2009年任美国康奈尔纳米科技设施Lester B. Knight冠名主任。
+                2009-2017年任法国圣埃蒂安高等矿业学院生物电子系创系主任。
+                现任英国工程与物理研究委员会难治癌症精准治疗项目主任。
+                </p>            
+        </div>
+    </div>
+</div>
+{% endblock %}

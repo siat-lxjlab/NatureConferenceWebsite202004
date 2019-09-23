@@ -1,0 +1,20 @@
+{% extends 'zh/speaker.html' %}
+
+{% block speaker %}
+<div class="card mt-5 shadow-sm">
+    <div class="row no-gutters">
+        <div class="col-md-4 col-lg-3 col-sm-6 p-3 bg-secondary">
+            <img src="{{url_for('static', filename='img/9.png')}}" class="card-img img-fluid" alt="...">
+        </div>
+        <div class="col-md-8 col-lg-9 col-sm-6 p-3 bg-light">
+            <h5>John Rogers</h5>
+            <p>美国西北大学材料科学与工程系，电气与计算机工程系。
+                Louis Simpson and Kimberly Querrey 冠名教授。
+                <strong>美国国家工程院院士，美国国家发明家学院院士，美国文理院院士和美国科学院院士</strong>。
+                主要研究领域：用于生物启发和生物集成的变形电子软材料、纳米光子结构、微流控器件和微电机系统等。
+                Active Impulse Systems, Semprius, MC10, CoolEdge, XCeleprint , Transient Electronics等多家高科技公司的创始人。
+                </p>
+        </div>
+    </div>
+</div>
+{% endblock %}
