@@ -1,47 +1,36 @@
 {% extends 'speaker.html' %}
 
 {% block speaker %}
+<div class="row border-bottom mb-3">
+    <span class="h3 t">
+        LEADING SPEAKERS
+    </span>
+</div>
 <div class="row">
-    <div class="col-lg-4 col-md-6 col-sm-12 p-3">
-        <div class="card shadow">
-            <img src="{{url_for('static', filename='img/2.png')}}" class="card-img-top" alt="...">
-            <div class="card-body text-center">
-                <p>Arto V.Nurmikko</p>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-4 col-md-6 col-sm-12 p-3">
-        <div class="card shadow">
-            <img src="{{url_for('static', filename='img/3.png')}}" class="card-img-top" alt="...">
-            <div class="card-body text-center">
-                <p>Charles M.Lieber</p>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-4 col-md-6 col-sm-12 p-3">
-        <div class="card shadow">
-            <img src="{{url_for('static', filename='img/9.png')}}" class="card-img-top" alt="...">
-            <div class="card-body text-center">
-                <p>John A.Rogers</p>
-            </div>
-        </div>
+    <div class="col-2 p-1">
+        <img src="{{url_for('static', filename='img/zhenanBao.jpg')}}" class="img-thumbnail" alt="...">
+        <a href="/speakers/19"><small>Zhenan Bao</small></a>
     </div>
 
-    <div class="col-lg-4 col-md-6 col-sm-12 p-3">
-        <div class="card shadow">
-            <img src="{{url_for('static', filename='img/14.png')}}" class="card-img-top" alt="...">
-            <div class="card-body text-center">
-                <p>Miguel Nicolelis</p>
-            </div>
-        </div>
+    <div class="col-2 p-1">
+        <img src="{{url_for('static', filename='img/CharlesMLieber.jpg')}}" class="img-thumbnail" alt="...">
+        <a href="/speakers/3"><small>Charles M. Lieber</small></a>
     </div>
-    <div class="col-lg-4 col-md-6 col-sm-12 p-3">
-        <div class="card shadow">
-            <img src="{{url_for('static', filename='img/19.png')}}" class="card-img-top" alt="...">
-            <div class="card-body text-center">
-                <p>Zhenan Bao</p>
-            </div>
-        </div>
+
+    <div class="col-2 p-1">
+        <img src="{{url_for('static', filename='img/JohnRogers.jpg')}}" class="img-thumbnail" alt="...">
+        <a href="/speakers/9"><small>John A. Rogers</small></a>
+    </div>
+
+    <div class="col-2 p-1"><img src="{{url_for('static', filename='img/ArtoVNurmikko.jpg')}}" class="img-thumbnail"
+            alt="...">
+        <a href="/speakers/2"><small>Arto V. Nurmikko</small></a>
+    </div>
+
+    <div class="col-2 p-1">
+        <img src="{{url_for('static', filename='img/Nicolelis.jpg')}}" class="img-thumbnail" alt="...">
+        <a href="/speakers/13"><small>Miguel Nicolelis</small></a>
+    </div>
     </div>
 </div>
 

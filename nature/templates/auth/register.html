@@ -26,6 +26,18 @@
           <div class="form-group">
             <div class="input-group">
               <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-venus-mars"></i></span>
+              </div>
+              <select class="custom-select form-control" name="gender" id="gender" required>
+                <option value="0">Choose gender</option>
+                <option value="1">Male</option>
+                <option value="2">Female</option>
+              </select>
+            </div>
+          </div>  
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-envelope"></i></span>
               </div>
               <input type="text" class="form-control" name="email" id="email" placeholder="Email" required>
@@ -85,6 +97,12 @@
               </div>
               <input type="password" class="form-control" name="repassword" id="repassword" placeholder="Confirm Password" required>
             </div>
+          </div>
+          <div class="form-group">
+              <input type="checkbox" name="requirement" value="1">
+              <span>Baby Care</span>
+              <input type="checkbox" name="requirement" value="2">
+              <span>Simultaneous Interpretation</span>
           </div>
           <div class="form-group">
             <button type="submit" class="btn btn-secondary btn-block">Register</button>

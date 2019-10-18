@@ -20,16 +20,18 @@ CREATE TABLE user (
     workplace TEXT NOT NULL,
     -- 职称
     title INTEGER NOT NULL,
-    -- 密保问题
-    question TEXT NOT NULL,
-    -- 答案
-    answer TEXT NOT NULL,
     -- 邮寄地址(发票、邀请函)
     address TEXT NULL,
     -- 用户创建时间
     created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    -- 是否需要看孩子
+    requirement_baby_care BOOLEAN NOT NULL DEFAULT FALSE,
+    -- 是否需要同声传译
+    requirement_translate BOOLEAN NOT NULL DEFAULT FALSE,
     -- 是否缴费完成
     paid BOOLEAN NOT NULL DEFAULT FALSE,
+    -- 是否提交摘要
+    submit BOOLEAN NOT NULL DEFAULT FALSE,
     -- 备用1
     remark1 TEXT NULL,
     -- 备用2

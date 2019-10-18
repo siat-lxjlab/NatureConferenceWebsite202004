@@ -1,39 +1,40 @@
 {% extends 'speaker.html' %}
 
 {% block speaker %}
+<div class="row border-bottom mb-3">
+    <span class="h3 t">
+        Brain-machine Interfaces
+    </span>
+</div>
 <div class="row">
-    <div class="col-lg-4 col-md-6 col-sm-12 p-3">
-        <div class="card shadow">
-            <img src="{{url_for('static', filename='img/6.png')}}" class="card-img-top" alt="...">
-            <div class="card-body text-center">
-                <p>Gaurav Sharma</p>
-            </div>
-        </div>
+    <div class="col-2 p-1">
+        <img src="{{url_for('static', filename='img/12.png')}}" class="img-thumbnail" alt="...">
+        <a href="/speakers/12"><small>Lee E. Miller</small></a>
     </div>
-    <div class="col-lg-4 col-md-6 col-sm-12 p-3">
-        <div class="card shadow">
-            <img src="{{url_for('static', filename='img/12.png')}}" class="card-img-top" alt="...">
-            <div class="card-body text-center">
-                <p>Lee E Miller</p>
-            </div>
-        </div>
+
+    <div class="col-2 p-1">
+        <img src="{{url_for('static', filename='img/13.png')}}" class="img-thumbnail" alt="...">
+        <a href="/speakers/13"><small>Leigh R. Hochberg</small></a>
     </div>
-    <div class="col-lg-4 col-md-6 col-sm-12 p-3">
-        <div class="card shadow">
-            <img src="{{url_for('static', filename='img/13.png')}}" class="card-img-top" alt="...">
-            <div class="card-body text-center">
-                <p>Leigh Hochberg</p>
-            </div>
-        </div>
+
+    <div class="col-2 p-1">
+        <img src="{{url_for('static', filename='img/6.png')}}" class="img-thumbnail" alt="...">
+        <a href="/speakers/6"><small>Gaurav Sharma</small></a>
     </div>
-    <div class="col-lg-4 col-md-6 col-sm-12 p-3">
-        <div class="card shadow">
-            <img src="{{url_for('static', filename='img/14.png')}}" class="card-img-top" alt="...">
-            <div class="card-body text-center">
-                <p>Miguel Nicolelis</p>
-            </div>
-        </div>
+
+    <div class="col-2 p-1"><img src="{{url_for('static', filename='img/1.png')}}" class="img-thumbnail"
+            alt="...">
+        <a href="/speakers/1"><small>Bijan Pesaran</small></a>
+    </div>
+
+    <div class="col-2 p-1">
+        <img src="{{url_for('static', filename='img/1.png')}}" class="img-thumbnail" alt="...">
+        <a href="/speakers/1"><small>Andrew B. Schwartz</small></a>
+    </div>
+
+    <div class="col-2 p-1">
+        <img src="{{url_for('static', filename='img/14.png')}}" class="img-thumbnail" alt="...">
+        <a href="/speakers/14"><small>Miguel Nicolelis</small></a>
     </div>
 </div>
-
 {% endblock %}
