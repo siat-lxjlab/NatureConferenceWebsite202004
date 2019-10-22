@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<!-- <h1>{% block title %}Log In{% endblock %}</h1> -->
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="card shadow-lg bg-light border-0">
+      <div class="card-body">
+        <form id="form" action="" method="post">
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+              </div>
+              <input type="text" class="form-control" name="email" id="email"
+                placeholder="Please enter the email you left when you registered" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-key"></i></span>
+              </div>
+              <input type="password" class="form-control" name="password" id="password" placeholder="Verification code">
+            </div>
+          </div>
+          <hr>
+          <div class="form-group">
+            <div class="input-group">
+              <span id="send" class="btn btn-light btn-block">
+                Send the verification code
+              </span>
+            </div>
+          </div>
+          <div class="form-group">
+            <span id="submit" class="btn btn-secondary btn-block">Confirm</span>
+          </div>
+        </form>
+        <hr>
+      </div>
+      <div class="card-footer">
+        {% for message in get_flashed_messages() %}
+        <span class="text-danger">{{ message }}</span>
+        {% endfor %}
+        <span id="tip" class="text-danger"></span>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  $(document).ready(function () {
+    $('#send').click(function () {
+      $('#send').hide()
+      $('#tip').html("Waiting for response...")
+      var email = $("input[name='email']").val()
+      $.get("/auth/reset?target=" + email, function (res) {
+        var result = $.parseJSON(res)
+        if (result.code == "2") {
+          $('#send').show()
+          $('#tip').html(result.content)
+        } else {
+          $('#tip').html(result.content)
+        }
+
+      })
+    });
+    $('#submit').click(function () {
+      $.ajax({
+        type: "POST",//方法类型
+        dataType: "json",//预期服务器返回的数据类型
+        url: "/auth/reset",//url
+        data: $('#form').serialize(),
+        success: function (res) {
+          //var result = $.parseJSON(res)
+          if (res.code == "2") {
+            $('#send').show()
+            $('#tip').html(res.content)
+          } else {
+            window.location.href = "/auth/change"
+          }
+        },
+        error: function () {
+          console.log("error")
+        }
+      });
+    });
+  });
+</script>
+{% endblock %}
