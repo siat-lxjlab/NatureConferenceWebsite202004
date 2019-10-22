@@ -1,122 +1,117 @@
 {% extends 'base.html'%}
 
 {% block content %}
-<div class="container-fluid bg-light">
-    <div class="row mt-5">
-      <nav class="col-md-3 d-none d-md-block sidebar">
+<div class="container container-index w-100 h-100 shadow-sm">
+  <div class="row">
+    <div class="col-3 border-right">
+      <nav class="border-right card shadow-sm mt-5 mb-5 sidebar">
         <div class="sidebar-sticky">
           <ul class="nav flex-column nav-fill nav-tabs">
-            <li class="nav-item mb-1 mt-1 text-left">
+            <li class="nav-item text-left">
               <a class="nav-link btn-block" href="index">
                 <i class="fas fa-home"></i>
-                <span class="badge-light">Home</span> 
+                <span>Home</span>
               </a>
             </li>
-            <li class="nav-item mb-1 mt-1 text-left">
+            <li class="nav-item text-left">
               <a class="nav-link btn-block active" href="info">
                 <i class="fas fa-user-edit"></i>
-                <span class="badge-light">Personal Information</span> 
+                <span>Personal Information</span>
               </a>
             </li>
-            <li class="nav-item mb-1 mt-1 text-left">
+            <li class="nav-item text-left">
               <a class="nav-link btn-block" href="submit">
                 <i class="fas fa-file-upload"></i>&nbsp;&nbsp;
-                <span class="badge-light">My Submission</span> 
+                <span>My Submission</span>
               </a>
             </li>
-            <!-- <li class="nav-item mb-1 mt-1 text-left">
-              <a class="nav-link btn-block" href="registration">
-                <i class="fas fa-registered"></i>&nbsp;
-                <span class="badge-light">Conference Registration</span> 
-              </a>
-            </li> -->
-            <li class="nav-item mb-1 mt-1 text-left">
-              <a class="nav-link btn-block"  href="fee">
+            <li class="nav-item text-left">
+              <a class="nav-link btn-block" href="fee">
                 <i class="fas fa-comments-dollar"></i>&nbsp;
-                <span class="badge-light">Conference Fee</span>
+                <span>Conference Fee</span>
               </a>
             </li>
           </ul>
         </div>
       </nav>
-  
-      <main role="main" class="col-md-9 ml-sm-auto col-lg-9 px-4">
-        <div class="row justify-content-center mt-3 mb-3">
-          <div class="card shadow-lg bg-light border-0">
-            <!-- <div class="card-header">
-              Log in
-            </div> -->
-            <div class="card-body">
-            <!-- <h3 class="header">Please sign in</h3>
-            <header class="my-3"></header> -->
-            <form action="" method="post">
-              <div class="form-group">
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="fas fa-user"></i>&nbsp;Name</span>
-                  </div>
-                  <input type="text" class="form-control" name="name" id="name" value="{{ g.user['name'] }}" required>
+    </div>
+    <div class="col-9 p-3">
+      <div class="row justify-content-center mt-3 mb-3">
+        <div class="card shadow-lg bg-light border-0">
+          <!-- <div class="card-header">
+            Log in
+          </div> -->
+          <div class="card-body">
+          <!-- <h3 class="header">Please sign in</h3>
+          <header class="my-3"></header> -->
+          <form action="" method="post">
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-user"></i>&nbsp;Name</span>
                 </div>
-              </div>  
-              <div class="form-group"> 
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="fas fa-envelope"></i>&nbsp;Email</span>
-                  </div>
-                  <input type="text" class="form-control" name="email" id="email" value="{{ g.user['email'] }}" required>
+                <input type="text" class="form-control" name="name" id="name" value="{{ g.user['name'] }}" required>
+              </div>
+            </div>  
+            <div class="form-group"> 
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-envelope"></i>&nbsp;Email</span>
                 </div>
+                <input type="text" class="form-control" name="email" id="email" value="{{ g.user['email'] }}" required>
               </div>
-              <div class="form-group">
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="fas fa-phone"></i>&nbsp;Phone</span>
-                  </div>
-                  <input type="text" class="form-control" name="phone" id="phone" value="{{ g.user['phone'] }}" required>
-                </div>
-              </div>
-              <div class="form-group">
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="fas fa-building"></i>&nbsp;I A</span>
-                  </div>
-                  <input type="text" class="form-control" name="workplace" id="workplace" value="{{ g.user['workplace'] }}" required>
-                </div>
-              </div>
-              <div class="form-group">
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="fas fa-id-card"></i>&nbsp;Title</span>
-                  </div>
-                  <!-- <input  class="form-control" name="title" id="title" placeholder="" required> -->
-                  <select class="custom-select form-control" name="title" id="title">
-                    <option value="0">Choose title</option>
-                    <option value="1" {% if g.user["title"]=="1" %} selected="selected" {% endif %}>Student</option>
-                    <option value="2" {% if g.user["title"]=="2" %} selected="selected" {% endif %}>Professor</option>
-                    <option value="3" {% if g.user["title"]=="3" %} selected="selected" {% endif %}>Research Stuff</option>
-                    <option value="4" {% if g.user["title"]=="4" %} selected="selected" {% endif %}>Business</option>
-                  </select>
-                </div>
-              </div>
-              <div class="form-group">
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="fas fa-user"></i>&nbsp;Username</span>
-                  </div>
-                  <input type="text" class="form-control" name="username" id="username" value="{{ g.user['username'] }}" required>
-                </div>
-              </div>
-              <div class="form-group">
-                <button type="submit" class="btn btn-secondary btn-block">Submit</button>
-              </div>
-            </form>
             </div>
-            <div class="card-footer">
-                {% for message in get_flashed_messages() %}
-                <span class="text-danger">{{ message }}</span>
-                {% endfor %}
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-phone"></i>&nbsp;Phone</span>
+                </div>
+                <input type="text" class="form-control" name="phone" id="phone" value="{{ g.user['phone'] }}" required>
+              </div>
             </div>
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-building"></i>&nbsp;I A</span>
+                </div>
+                <input type="text" class="form-control" name="workplace" id="workplace" value="{{ g.user['workplace'] }}" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-id-card"></i>&nbsp;Title</span>
+                </div>
+                <!-- <input  class="form-control" name="title" id="title" placeholder="" required> -->
+                <select class="custom-select form-control" name="title" id="title">
+                  <option value="0">Choose title</option>
+                  <option value="1" {% if g.user['title']==1 %} selected="selected" {% endif %}>Student</option>
+                  <option value="2" {% if g.user['title']==2 %} selected="selected" {% endif %}>Professor</option>
+                  <option value="3" {% if g.user['title']==3 %} selected="selected" {% endif %}>Research Stuff</option>
+                  <option value="4" {% if g.user['title']==4 %} selected="selected" {% endif %}>Business</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-user"></i>&nbsp;Username</span>
+                </div>
+                <input type="text" class="form-control" name="username" id="username" value="{{ g.user['username'] }}" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <button type="submit" class="btn btn-secondary btn-block">Submit</button>
+            </div>
+          </form>
           </div>
-      </main>
+          <div class="card-footer">
+              {% for message in get_flashed_messages() %}
+              <span class="text-danger">{{ message }}</span>
+              {% endfor %}
+          </div>
+        </div>
     </div>
   </div>
+</div>
 {% endblock %}

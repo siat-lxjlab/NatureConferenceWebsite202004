@@ -4,48 +4,43 @@
 {% endblock%}
 
 {% block content %}
-<div class="container-fluid bg-light mt-5">
-    <div class="row">
-      <nav class="col-md-3 d-none d-md-block sidebar">
+<div class="container container-index w-100 h-100 shadow-sm">
+  <div class="row">
+    <div class="col-3 border-right">
+      <nav class="border-right card shadow-sm mt-5 mb-5 sidebar">
         <div class="sidebar-sticky">
           <ul class="nav flex-column nav-fill nav-tabs">
-            <li class="nav-item mb-1 mt-1 text-left">
+            <li class="nav-item text-left">
               <a class="nav-link btn-block" href="index">
                 <i class="fas fa-home"></i>
-                <span class="badge-light">Home</span> 
+                <span>Home</span>
               </a>
             </li>
-            <li class="nav-item mb-1 mt-1 text-left">
+            <li class="nav-item text-left">
               <a class="nav-link btn-block" href="info">
                 <i class="fas fa-user-edit"></i>
-                <span class="badge-light">Personal Information</span> 
+                <span>Personal Information</span>
               </a>
             </li>
-            <li class="nav-item mb-1 mt-1 text-left">
+            <li class="nav-item text-left">
               <a class="nav-link btn-block" href="submit">
                 <i class="fas fa-file-upload"></i>&nbsp;&nbsp;
-                <span class="badge-light">My Submission</span> 
+                <span>My Submission</span>
               </a>
             </li>
-            <!-- <li class="nav-item mb-1 mt-1 text-left">
-              <a class="nav-link btn-block" href="registration">
-                <i class="fas fa-registered"></i>&nbsp;
-                <span class="badge-light">Conference Registration</span> 
-              </a>
-            </li> -->
-            <li class="nav-item mb-1 mt-1 text-left">
-              <a class="nav-link btn-block"  href="fee">
+            <li class="nav-item text-left">
+              <a class="nav-link btn-block" href="fee">
                 <i class="fas fa-comments-dollar"></i>&nbsp;
-                <span class="badge-light">Conference Fee</span>
+                <span>Conference Fee</span>
               </a>
             </li>
           </ul>
         </div>
       </nav>
-  
-      <main role="main" class="col-md-9 ml-sm-auto col-lg-9 px-4 text-center">
-        <h1>Home</h1>
-      </main>
+    </div>
+    <div class="col-9 p-3">
+      <h1>Home</h1>
     </div>
   </div>
+</div>
 {% endblock %}

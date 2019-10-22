@@ -1,75 +1,70 @@
 {% extends 'base.html'%}
 
 {% block content %}
-<div class="container-fluid bg-light">
-    <div class="row mt-5">
-      <nav class="col-md-3 d-none d-md-block sidebar">
+<div class="container container-index w-100 h-100 shadow-sm">
+  <div class="row">
+    <div class="col-3 border-right">
+      <nav class="border-right card shadow-sm mt-5 mb-5 sidebar">
         <div class="sidebar-sticky">
           <ul class="nav flex-column nav-fill nav-tabs">
-            <li class="nav-item mb-1 mt-1 text-left">
+            <li class="nav-item text-left">
               <a class="nav-link btn-block" href="index">
                 <i class="fas fa-home"></i>
-                <span class="badge-light">Home</span> 
+                <span>Home</span>
               </a>
             </li>
-            <li class="nav-item mb-1 mt-1 text-left">
+            <li class="nav-item text-left">
               <a class="nav-link btn-block" href="info">
                 <i class="fas fa-user-edit"></i>
-                <span class="badge-light">Personal Information</span> 
+                <span>Personal Information</span>
               </a>
             </li>
-            <li class="nav-item mb-1 mt-1 text-left">
+            <li class="nav-item text-left">
               <a class="nav-link btn-block active" href="submit">
                 <i class="fas fa-file-upload"></i>&nbsp;&nbsp;
-                <span class="badge-light">My Submission</span> 
+                <span>My Submission</span>
               </a>
             </li>
-            <!-- <li class="nav-item mb-1 mt-1 text-left">
-              <a class="nav-link btn-block" href="registration">
-                <i class="fas fa-registered"></i>&nbsp;
-                <span class="badge-light">Conference Registration</span> 
-              </a>
-            </li> -->
-            <li class="nav-item mb-1 mt-1 text-left">
-              <a class="nav-link btn-block"  href="fee">
+            <li class="nav-item text-left">
+              <a class="nav-link btn-block" href="fee">
                 <i class="fas fa-comments-dollar"></i>&nbsp;
-                <span class="badge-light">Conference Fee</span>
+                <span>Conference Fee</span>
               </a>
             </li>
           </ul>
         </div>
       </nav>
-  
-      <main role="main" class="col-md-9 ml-sm-auto col-lg-9 px-4">
-          <div class="row mt-5">
-              <table class="table table-striped shadow-lg">
-                  <thead class="table-primary">
-                    <tr>
-                      <th scope="col">#</th>
-                      <th scope="col">Filename</th>
-                      <th scope="col">Datetime</th>
-                      <th scope="col">State</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                  {% if abstract %}
-                    <tr>
-                      <th><a class="btn btn-danger" href="/upload/delete?id={{abstract['id']}}">Delete</a></th>
-                      <td><span class="btn btn-light">{{abstract['filename']}}</span></td>
-                      <td><span class="btn btn-light">{{abstract['created']}}</span></td>
-                      <td><span class="btn btn-light">
-                          {% if abstract['state']=="1" %} 
-                            审核通过
-                          {% else %}
-                            待审核
-                          {% endif %}
-                        </span></td>
-                    </tr>
-                    {% endif %}
-                  </tbody>
-                </table>         
-          </div>        
-        <div class="row justify-content-center mt-3 mb-3">
+    </div>
+    <div class="col-9 p-3">
+      <div class="row mt-5">
+        <table class="table table-striped shadow-lg">
+          <thead class="table-primary">
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Filename</th>
+              <th scope="col">Datetime</th>
+              <th scope="col">State</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% if abstract %}
+            <tr>
+              <th><a class="btn btn-danger" href="/upload/delete?id={{abstract['id']}}">Delete</a></th>
+              <td><span class="btn btn-light">{{abstract['filename']}}</span></td>
+              <td><span class="btn btn-light">{{abstract['created']}}</span></td>
+              <td><span class="btn btn-light">
+                  {% if abstract['state']=="1" %}
+                  审核通过
+                  {% else %}
+                  待审核
+                  {% endif %}
+                </span></td>
+            </tr>
+            {% endif %}
+          </tbody>
+        </table>
+      </div>
+      <div class="row justify-content-center mt-3 mb-3">
         <form action="/upload" method="POST" enctype="multipart/form-data">
           <div class="card shadow-lg bg-light border-0">
             <div class="card-header">
@@ -87,49 +82,50 @@
                   </div>
                 </div>
                 <div class="input-group">
-                    <small class="form-text text-muted">The file type must be PDF. If upload successfully, you can see the file in the table above.</small>
+                  <small class="form-text text-muted">The file type must be docx. If your abstract uploaded successfully, you can see the
+                    file in the table above.</small>
                 </div>
               </div>
               <div class="form-group">
-                  <div class="input-group">
-                    <button type="submit" id="upload" class="btn btn-light btn-block">
-                      Submit
-                    </button>
-                  </div>
-                  <!-- <span class="badge badge-info" href="#">Don't have an account yet?<a class="badge badge-info" href="#">Register</a>here.</span> -->
-                </div>              
-              </div>
-              <div class="card-footer">
-                  {% for message in get_flashed_messages() %}
-                  <span class="text-danger">{{ message }}</span>
-                  {% endfor %}
+                <div class="input-group">
+                  <button type="submit" id="upload" class="btn btn-light btn-block">
+                    Submit
+                  </button>
+                </div>
+                <!-- <span class="badge badge-info" href="#">Don't have an account yet?<a class="badge badge-info" href="#">Register</a>here.</span> -->
               </div>
             </div>
+            <div class="card-footer">
+              {% for message in get_flashed_messages() %}
+              <span class="text-danger">{{ message }}</span>
+              {% endfor %}
+            </div>
           </div>
-          </form>
-        </div>
-      </main>
+      </div>
+      </form>
     </div>
   </div>
-  <script>
-  $(document).ready(function() {
-  $('input[type="file"]').on("change", function() {
-    let filenames = [];
-    let files = document.getElementById("customFile").files;
-    if (files.length > 1) {
-      // filenames.push("Total Files (" + files.length + ")");
-      return;
-    } else {
-      for (let i in files) {
-        if (files.hasOwnProperty(i)) {
-          filenames.push(files[i].name);
+</div>
+</div>
+<script>
+  $(document).ready(function () {
+    $('input[type="file"]').on("change", function () {
+      let filenames = [];
+      let files = document.getElementById("customFile").files;
+      if (files.length > 1) {
+        // filenames.push("Total Files (" + files.length + ")");
+        return;
+      } else {
+        for (let i in files) {
+          if (files.hasOwnProperty(i)) {
+            filenames.push(files[i].name);
+          }
         }
       }
-    }
-    $(this)
-      .next(".custom-file-label")
-      .html(filenames.join(","));
+      $(this)
+        .next(".custom-file-label")
+        .html(filenames.join(","));
+    });
   });
-});
 </script>
 {% endblock %}

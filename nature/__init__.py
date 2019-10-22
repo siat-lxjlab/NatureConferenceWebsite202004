@@ -6,7 +6,7 @@ from werkzeug.utils import secure_filename
 from nature.db import get_db
 
 UPLOAD_FOLDER = os.path.curdir + os.path.sep + 'Abstract' + os.path.sep
-ALLOWED_EXTENSIONS = set(['pdf'])
+ALLOWED_EXTENSIONS = set(['docx', 'doc'])
 
 '''
     1 - Arnd Pralle
@@ -143,7 +143,7 @@ def create_app(test_config=None):
             'SELECT id FROM abstract WHERE user_id = ?', (user_id,)
                 ).fetchone() 
         if test is not None:
-            flash('Can\'t repeat upload')  
+            flash('Can\'t upload twice')  
             return redirect('/my/submit')
         if request.method == 'POST':
             # check if the post request has the file part
@@ -151,13 +151,14 @@ def create_app(test_config=None):
                 flash('No file part')
                 return redirect(request.url)
             file = request.files['file']
+            
             # if user does not select file, browser also
             # submit an empty part without filename
             if file.filename == '':
                 flash('No selected file')
                 return redirect(request.url)
             if file and allowed_file(file.filename):
-                filename = secure_filename(file.filename)
+                filename = file.filename
                 db.execute(
                     'INSERT INTO abstract (user_id, filename, state) VALUES(?, ?, ?)' ,
                     (user_id, filename, 0)
