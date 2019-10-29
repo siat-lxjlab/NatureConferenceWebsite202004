@@ -58,11 +58,12 @@
                 </a>
 
             {% else %}
-
-                <a class="nav-link" href="{{ url_for('auth.register') }}">
-                  <button class="navbar-btn btn btn-sm btn-primary lift ml-auto">注册</button>                
-                </a>
-
+            <a class="navbar-btn" href="{{ url_for('auth.login') }}">
+              登录              
+            </a>
+            <a class="navbar-btn btn btn-sm btn-primary ml-1" href="{{ url_for('auth.register') }}">
+              注册            
+            </a>
             {% endif %}
           
       </div>

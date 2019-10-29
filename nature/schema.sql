@@ -1,6 +1,15 @@
 DROP TABLE IF EXISTS user;
 DROP TABLE IF EXISTS invoice;
 DROP TABLE IF EXISTS abstract;
+DROP TABLE IF EXISTS admin;
+
+CREATE TABLE admin (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    -- 用户名
+    username TEXT NOT NULL,
+    -- 密码
+    password TEXT NOT NULL
+);
 
 CREATE TABLE user (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -22,12 +31,16 @@ CREATE TABLE user (
     title INTEGER NOT NULL,
     -- 邮寄地址(发票、邀请函)
     address TEXT NULL,
+    -- 发票抬头
+    invoice_title TEXT NOT NULL,
+    -- 纳税人识别号
+    serial_num TEXT NOT NULL, 
     -- 用户创建时间
     created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     -- 是否需要看孩子
     requirement_baby_care BOOLEAN NOT NULL DEFAULT FALSE,
     -- 是否需要同声传译
-    requirement_translate BOOLEAN NOT NULL DEFAULT FALSE,
+    requirement_simultaneous_transmission BOOLEAN NOT NULL DEFAULT FALSE
     -- 是否缴费完成
     paid BOOLEAN NOT NULL DEFAULT FALSE,
     -- 是否提交摘要
@@ -55,10 +68,6 @@ CREATE TABLE abstract (
 
 CREATE TABLE invoice (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    -- 发票抬头
-    invoice_title TEXT NOT NULL,
-    -- 纳税人识别号
-    serial_num TEXT NOT NULL, 
     created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     user_id INTEGER NOT NULL,
     FOREIGN KEY (user_id) REFERENCES user (id)

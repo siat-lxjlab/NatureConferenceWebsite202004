@@ -3,6 +3,16 @@ import sqlite3
 import click
 from flask import current_app, g
 from flask.cli import with_appcontext
+from werkzeug.security import generate_password_hash
+
+
+def make_admin(username, password):
+    db = get_db()
+    db.execute(
+        'INSERT INTO admin (username, password) VALUES(?,?)',
+        (username, generate_password_hash(password))
+    )
+    db.commit()   
 
 
 def init_app(app):
@@ -22,6 +32,7 @@ def init_db():
 def init_db_command():
     """Clear the existing data and create new tables."""
     init_db()
+    make_admin("root", "202004lxj")
     click.echo('Initialized the database.')
 
 

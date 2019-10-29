@@ -1,11 +1,22 @@
 import os
+import time
+import zipfile
+
+from io import BytesIO
 from flask import (
-    Blueprint, Flask, flash, g, redirect, render_template, request, url_for, session, abort
+    Blueprint, Flask, flash, g, redirect, render_template, request, url_for, session, abort, send_from_directory, send_file, current_app
 )
+from flask_cors import CORS
 from werkzeug.utils import secure_filename
 from nature.db import get_db
+from nature.auth import login_required
+from nature.root import login_required as admin_login_required
+from nature.excel import main
+
 
 UPLOAD_FOLDER = os.path.curdir + os.path.sep + 'Abstract' + os.path.sep
+DOWNLOAD_FOLDER = os.path.curdir + os.path.sep + 'Zip' + os.path.sep
+RECOVERY_FOLDER = os.path.curdir + os.path.sep + 'Recovery' + os.path.sep
 ALLOWED_EXTENSIONS = set(['docx', 'doc'])
 
 '''
@@ -33,7 +44,10 @@ ALLOWED_EXTENSIONS = set(['docx', 'doc'])
 def create_app(test_config=None):
     # create and configure the app
     app = Flask(__name__, instance_relative_config=True)
+    CORS(app, resources=r'/*')
     app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+    app.config['DOWNLOAD_FOLDER'] = DOWNLOAD_FOLDER
+    app.config['RECOVERY_FOLDER'] = RECOVERY_FOLDER
     app.config.from_mapping(
         SECRET_KEY='dev',
         DATABASE=os.path.join(app.instance_path, 'nature.sqlite'),
@@ -84,13 +98,16 @@ def create_app(test_config=None):
             abort(404) 
         return render_template('zh/speakers/%d.html'%speaker_num)
 
+
     @app.route('/speakers')
     def get_speakers():
         return render_template('speakers/leading.html')
 
+
     @app.route('/speakers/leading')
     def get_leadingspeakers():
         return render_template('speakers/leading.html')
+
 
     @app.route('/speakers/part/<int:part_num>')
     def get_speakers_bypart(part_num):
@@ -98,18 +115,21 @@ def create_app(test_config=None):
             abort(404) 
         return render_template('speakers/part%d.html'%part_num)
 
+
     @app.route('/speakers/<int:speaker_num>')
     def get_speaker_bynum(speaker_num):
         if speaker_num > 19 or speaker_num < 1:
             abort(404) 
         return render_template('speakers/%d.html'%speaker_num)
 
+
     def allowed_file(filename):
         return '.' in filename and \
             filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
-
+    
     @app.route('/upload/delete', methods=['GET'])
+    @login_required
     def delete_upload_file():
         user_id = session.get('user_id')
         if user_id is None:
@@ -129,11 +149,72 @@ def create_app(test_config=None):
                 'Delete FROM abstract WHERE id = ?', (abstract_id,)
             )
             db.commit()
+            db.execute(
+                'UPDATE user SET submit = ? WHERE id = ?',
+                (False, user_id)
+            )
+            db.commit()
             return redirect(url_for('manage.submit'))
         return redirect(url_for('manage.submit'))
 
 
+    @app.route('/download/<int:file_id>', methods=['GET', 'POST'])
+    def download_file(file_id):
+        user_id = session.get("user_id")
+        admin_id = session.get("admin_id")
+        if user_id is None and admin_id is None:
+            return redirect("/index")
+        db = get_db()
+        abstract = db.execute(
+            'SELECT filename FROM abstract WHERE id = ?', (file_id, )
+        ).fetchone()
+        
+        if abstract is None:
+            return abort(404) 
+        else:
+            return send_from_directory(os.path.realpath(app.config['UPLOAD_FOLDER']), abstract["filename"], as_attachment=True)
+
+
+    @app.route('/download/batch', methods=['GET', 'POST'])
+    def download_batch():
+        user_id = session.get("user_id")
+        admin_id = session.get("admin_id")
+        if user_id is None and admin_id is None:
+            return redirect("/index")
+
+        file_list = list()
+        files = os.listdir(app.config['UPLOAD_FOLDER'])
+        for f in files:
+            file_list.append(f)
+        print(file_list)
+
+        # abort(404)
+        dl_name = '{}.zip'.format('abstract')
+        with zipfile.ZipFile(os.path.join(app.config['DOWNLOAD_FOLDER'], dl_name), "w", zipfile.ZIP_DEFLATED) as zf:
+            for _file in file_list:
+                with open(os.path.join(app.config['UPLOAD_FOLDER'], _file), 'rb') as fp:
+                    zf.writestr(os.path.join(app.config['UPLOAD_FOLDER'], _file), fp.read())
+        return send_from_directory(os.path.realpath(app.config['DOWNLOAD_FOLDER']), dl_name, as_attachment=True)
+    
+
+    @app.route('/download/excel', methods=['GET', 'POST'])
+    @admin_login_required
+    def download_excel():
+        dbpath = current_app.config['DATABASE']
+        xlspath = app.config['RECOVERY_FOLDER']
+        main(dbpath, xlspath)
+        return send_from_directory(os.path.realpath(app.config['RECOVERY_FOLDER']), 'nature.xls', as_attachment=True)
+    
+
+    @app.route('/download/db', methods=['GET', 'POST'])
+    @admin_login_required
+    def download_db():
+        dbpath = os.path.curdir + os.path.sep + 'instance' + os.path.sep
+        return send_from_directory(os.path.realpath(dbpath), 'nature.sqlite', as_attachment=True)
+
+
     @app.route('/upload', methods=['GET', 'POST'])
+    @login_required
     def upload_file():
         user_id = session.get('user_id')
         if user_id is None:
@@ -141,7 +222,7 @@ def create_app(test_config=None):
         db = get_db()
         test = db.execute(
             'SELECT id FROM abstract WHERE user_id = ?', (user_id,)
-                ).fetchone() 
+            ).fetchone() 
         if test is not None:
             flash('Can\'t upload twice')  
             return redirect('/my/submit')
@@ -158,10 +239,16 @@ def create_app(test_config=None):
                 flash('No selected file')
                 return redirect(request.url)
             if file and allowed_file(file.filename):
-                filename = file.filename
+                timestamp = round(time.time())
+                filename = '%d+%d+%s'%(timestamp, user_id, file.filename)
                 db.execute(
                     'INSERT INTO abstract (user_id, filename, state) VALUES(?, ?, ?)' ,
                     (user_id, filename, 0)
+                )
+                db.commit()
+                db.execute(
+                    'UPDATE user SET submit = ? WHERE id = ?',
+                    (True, user_id)
                 )
                 db.commit()
                 file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
@@ -176,6 +263,10 @@ def create_app(test_config=None):
     from . import manage        
     app.register_blueprint(manage.bp)
     app.add_url_rule('/manage', endpoint='index')
+
+    from . import root        
+    app.register_blueprint(root.bp)
+    app.add_url_rule('/admin', endpoint='index')
 
     return app
 

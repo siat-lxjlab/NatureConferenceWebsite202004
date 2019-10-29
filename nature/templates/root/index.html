@@ -1,0 +1,55 @@
+{% extends 'root/base.html' %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <nav class="col-md-1 d-none d-md-block bg-light sidebar">
+            <div class="sidebar-sticky mt-5">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/root/guest">
+                            注册嘉宾 
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/root/abstract">
+                            摘要提交
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/root/fee">
+                            会议缴费
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <main role="main" class="col-md-10 ml-sm-auto col-lg-11 px-4">
+            <div
+                class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <h1 class="h2">控制台</h1>
+                <div class="btn-toolbar mb-2 mb-md-0">
+                    <div class="btn-group mr-2">
+                        <a class="btn btn-sm btn-outline-primary" href="/download/db">备份数据库</a>
+                        <a class="btn btn-sm btn-outline-info" href="/download/excel">导出Excel</a>
+                        <a class="btn btn-sm btn-outline-info" href="/download/batch">导出摘要</a>
+                    </div>
+                </div>
+            </div>
+            <h2>注册人员信息</h2>
+            <div class="row text-white">
+                <div class="col-3 p-5 bg-primary mr-3 ml-3 rounded">
+                    已注册人数 <bold>{{ num_user }}</bold>
+                </div>
+                <div class="col-3 p-5 bg-success mr-3 ml-3 rounded">
+                    已提交摘要 <bold>{{ num_abstract }}</bold>
+                </div>
+                <div class="col-3 p-5 bg-danger mr-3 ml-3 rounded">
+                    已缴费人数 <bold>{{ num_invoice }}</bold>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+{% endblock %}

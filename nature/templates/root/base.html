@@ -1,0 +1,21 @@
+<!doctype html>
+<title>{% block title %}{% endblock %}</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+<link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css')}}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}">
+<script src="{{ url_for('static', filename='js/jquery.min.js')}}"></script>
+<script src="{{ url_for('static', filename='js/popper.min.js')}}"></script>
+<script src="{{ url_for('static', filename='js/aos.js')}}"></script>
+<script src="{{ url_for('static', filename='js/flickity-fade.js')}}"></script>
+<script src="{{ url_for('static', filename='js/flickity.pkgd.min.js')}}"></script>
+<script src="{{ url_for('static', filename='js/highlight.pack.min.js')}}"></script>
+<script src="{{ url_for('static', filename='js/jquery.fancybox.min.js')}}"></script>
+<script src="{{ url_for('static', filename='js/smooth-scroll.min.js')}}"></script>
+<script src="{{ url_for('static', filename='js/theme.min.js')}}"></script>
+<script src="{{ url_for('static', filename='js/typed.min.js')}}"></script>
+<script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js')}}"></script>
+<script src="{{ url_for('static', filename='js/all.js')}}"></script>
+<body>
+{% block content %}
+{% endblock %}
+</body>

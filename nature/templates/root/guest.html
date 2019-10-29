@@ -1,0 +1,120 @@
+{% extends 'root/base.html' %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <nav class="col-md-1 d-none d-md-block bg-light sidebar">
+            <div class="sidebar-sticky mt-5">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/root/guest">
+                            注册嘉宾
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/root/abstract">
+                            摘要提交
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/root/fee">
+                            会议缴费
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <main role="main" class="col-md-10 ml-sm-auto col-lg-11 px-4">
+            <div
+                class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <h1 class="h2">控制台</h1>
+                <div class="btn-toolbar mb-2 mb-md-0">
+                    <div class="btn-group mr-2">
+                        <a class="btn btn-sm btn-outline-primary" href="/download/db">备份数据库</a>
+                        <a class="btn btn-sm btn-outline-info" href="/download/excel">导出Excel</a>
+                        <a class="btn btn-sm btn-outline-info" href="/download/batch">导出摘要</a>
+                    </div>
+                </div>
+            </div>
+            <h2>注册人员信息</h2>
+            <div class="table-responsive">
+                <table class="table table-striped table-sm">
+                    <thead>
+                        <tr>
+                            <th>姓名</th>
+                            <th>性别</th>
+                            <th>职称类别</th>
+                            <th>邮箱</th>
+                            <th>手机号</th>
+                            <th>创建时间</th>
+                            <th>地址</th>
+                            <th>缴费状态</th>
+                            <th>提交摘要状态</th>
+                            <th>特殊要求</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for user in users %}
+                        <tr>
+                            <td><span class="btn btn-primary text-white">{{ user["name"] }}</span></td>
+                            <td>
+                                {% if user["gender"] == 1%}
+                                <span class="btn btn-primary text-white">女</span>
+                                {% else %}
+                                <span class="btn btn-primary text-white">男</span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if user["title"] == 1%}
+                                <span class="btn btn-primary text-white">学生</span>
+                                {% elif user["title"] == 2 %}
+                                <span class="btn btn-primary text-white">教授</span>
+                                {% elif user["title"] == 3 %}
+                                <span class="btn btn-primary text-white">研究人员</span>
+                                {% else %}
+                                <span class="btn btn-primary text-white">商业人士</span>
+                                {% endif %}
+                            </td>
+                            <td><span class="btn btn-primary text-white">{{ user["email"] }}</span></td>
+                            <td><span class="btn btn-primary text-white">{{ user["phone"] }}</span></td>
+                            <td><span class="btn btn-primary text-white">{{ user["created"] }}</span></td>
+                            <td><span class="btn btn-primary text-white">
+                                {{ user["address"]}}
+                            </span></td>
+                            <td>
+                                {% if user["paid"] == "FALSE" %}
+                                <span class="btn btn-danger text-white">未缴费</span>
+                                {% else %}
+                                <span class="btn btn-info text-white">已缴费</span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if user["submit"] == "FALSE" %}
+                                <span class="btn btn-danger text-white">未提交</span>
+                                {% else %}
+                                <span class="btn btn-info text-white">已提交</span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if user["requirement_baby_care"] == 1%}
+                                <span class="btn btn-primary text-white">婴儿照顾</span>
+                                {% else %}
+                                <span class="btn btn-primary text-white">无</span>
+                                {% endif %}
+
+                                {% if user["requirement_simultaneous_transmission"] == 2%}
+                                <span class="btn btn-primary text-white">同声传译</span>
+                                {% else %}
+                                <span class="btn btn-primary text-white">无</span>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+</div>
+{% endblock %}
