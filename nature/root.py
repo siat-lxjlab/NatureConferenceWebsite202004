@@ -79,7 +79,14 @@ def index():
         'SELECT * FROM abstract'
     ).fetchall()
 
-    return render_template('root/index.html', num_user=len(users), num_invoice=len(invoices), num_abstract=len(abstracts))
+    num_bc, num_st = 0, 0
+    for user in users:
+        if user["requirement_baby_care"] == 1:
+            num_bc += 1
+        if user["requirement_simultaneous_transmission"] == 1:
+            num_st += 1
+
+    return render_template('root/index.html', num_user=len(users), num_invoice=len(invoices), num_abstract=len(abstracts), num_bc=num_bc, num_st=num_st)
 
 
 @bp.route('/guest', methods=('GET', 'POST'))

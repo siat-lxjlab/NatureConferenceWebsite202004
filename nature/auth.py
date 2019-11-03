@@ -62,7 +62,7 @@ def register():
         elif not (len(password) > 5):
             error = 'At least 6 characters.'
         elif not (password == repassword):
-            error = 'Two passwords is inconsistent.'
+            error = 'Two passwords are inconsistent.'
         elif not name:
             error = 'Name is required.'
         elif not re.match(email_pattern, email):
@@ -84,7 +84,7 @@ def register():
 
         if error is None:
             db.execute(
-                'INSERT INTO user (username, password, name, email, phone, workplace, title, gender, requirement_baby_care, requirement_translate) VALUES(?,?,?,?,?,?,?,?,?,?)',
+                'INSERT INTO user (username, password, name, email, phone, workplace, title, gender, requirement_baby_care, requirement_simultaneous_transmission) VALUES(?,?,?,?,?,?,?,?,?,?)',
                 (username, generate_password_hash(password), name, email, phone, workplace, title, gender, baby_care, translate)
             )
             db.commit()

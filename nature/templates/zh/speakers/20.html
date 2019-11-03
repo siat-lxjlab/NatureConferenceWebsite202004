@@ -1,0 +1,19 @@
+{% extends 'zh/speaker.html' %}
+
+{% block speaker %}
+<div class="card mt-5 shadow-sm">
+    <div class="row no-gutters">
+        <div class="col-md-4 col-lg-3 col-sm-6 p-3 bg-light border-right border-bottom">
+            <img src="{{url_for('static', filename='img/20.png')}}" class="card-img img-fluid rounded-circle" alt="...">
+        </div>
+        <div class="col-md-8 col-lg-9 col-sm-6 p-3 bg-light">
+            <h5>Jacob Robinson</h5>
+            <p>
+                    美国莱斯大学电气与计算机工程系以及生物工程系副教授。
+                    研究方向：纳米神经调控技术，研发用于神经环路结构与功能研究的微纳器件，推动神经疾病治疗技术的发展。
+                    
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}

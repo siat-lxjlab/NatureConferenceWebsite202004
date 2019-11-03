@@ -2,17 +2,20 @@
 
 {% block content %}
 <div class="container">
-    <div class="container jumbotron text-center flex-column">
-        <div id="poster" class="row mt-3 p-5 rounded">
-            <img class="img-fluid rounded mx-auto mt-5 d-block" src="{{url_for('static', filename='img/welcome.png')}}"
-                alt="">
-            <div class="container mt-5 mb-5">
-                <button class="btn btn-primary lift">
-                    Purchase Pass
-                </button>   
+    <div class="row">
+        <div id="poster" class="container jumbotron text-center flex-column mt-3">
+            <div class="row m-5 py-5 rounded">
+                <img class="img-fluid rounded mx-auto mt-5 d-block"
+                    src="{{url_for('static', filename='img/anatureconference.png')}}" alt="">
+                <div class="container mt-5 mb-5">
+                    <button class="btn btn-primary lift">
+                        Purchase Pass
+                    </button>
+                </div>
             </div>
         </div>
     </div>
+
     <section>
         <div class="container-fluid border-top py-3">
             <div class="row-fluid text-center">

@@ -39,6 +39,10 @@ ALLOWED_EXTENSIONS = set(['docx', 'doc'])
     17 - Xiaojie Duan 
     18 - Xinyan Tracy Cui
     19 - Zhenan Bao
+    20 - Jacob T. Robinson
+    21 - Georg Nagel
+    22 - Bijan Pesaran
+    23 - Andrew B. Schwartz
 '''
 
 def create_app(test_config=None):
@@ -94,7 +98,7 @@ def create_app(test_config=None):
 
     @app.route('/zh/speakers/<int:speaker_num>')
     def get_zh_speaker_bynum(speaker_num):
-        if speaker_num > 19 or speaker_num < 1:
+        if speaker_num > 23 or speaker_num < 1:
             abort(404) 
         return render_template('zh/speakers/%d.html'%speaker_num)
 
@@ -118,7 +122,7 @@ def create_app(test_config=None):
 
     @app.route('/speakers/<int:speaker_num>')
     def get_speaker_bynum(speaker_num):
-        if speaker_num > 19 or speaker_num < 1:
+        if speaker_num > 23 or speaker_num < 1:
             abort(404) 
         return render_template('speakers/%d.html'%speaker_num)
 
