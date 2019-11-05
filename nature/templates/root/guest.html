@@ -50,6 +50,7 @@
                             <th>创建时间</th>
                             <th>地址</th>
                             <th>缴费状态</th>
+                            <th>更新缴费状态</th>
                             <th>提交摘要状态</th>
                             <th>特殊要求</th>
                         </tr>
@@ -83,14 +84,18 @@
                                 {{ user["address"]}}
                             </span></td>
                             <td>
-                                {% if user["paid"] == "FALSE" %}
+                                {% if user["paid"] == "False" %}
                                 <span class="btn btn-danger text-white">未缴费</span>
                                 {% else %}
                                 <span class="btn btn-info text-white">已缴费</span>
                                 {% endif %}
                             </td>
                             <td>
-                                {% if user["submit"] == "FALSE" %}
+                                <a class="btn btn-danger text-white" href="/root/paid/no/{{ user['id'] }}">未缴</a>
+                                <a class="btn btn-info text-white" href="/root/paid/yes/{{ user['id'] }}">已缴</a>
+                            </td>
+                            <td>
+                                {% if user["submit"] == "False" %}
                                 <span class="btn btn-danger text-white">未提交</span>
                                 {% else %}
                                 <span class="btn btn-info text-white">已提交</span>

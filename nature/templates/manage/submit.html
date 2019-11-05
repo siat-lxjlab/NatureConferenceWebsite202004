@@ -55,9 +55,11 @@
               <td><span class="btn btn-light">{{abstract['created']}}</span></td>
               <td><span class="btn btn-light">
                   {% if abstract['state']=="1" %}
-                  审核通过
+                  Approved
+                  {% elif abstract['state']=="0" %}
+                  Under Approval
                   {% else %}
-                  待审核
+                  Not Approved
                   {% endif %}
                 </span></td>
             </tr>

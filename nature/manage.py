@@ -82,12 +82,35 @@ def person():
     return render_template('manage/person.html')
 
 
-@bp.route('/fee')
+@bp.route('/fee', methods=('GET', 'POST'))
 @login_required
 def pay():
-    # db = get_db()
-    # db.execute()
-    return render_template('manage/fee.html')
+    user_id = session.get('user_id')
+    if request.method == 'POST':
+        serial = request.form['serial']
+        title = request.form['title']
+        db = get_db()
+        error = None
+
+        if not title:
+            error = '请填写发票抬头'
+        elif not serial:
+            error = '请填写纳税人识别号' 
+        else:
+            error = None
+
+        if error is None:
+            error = "提交成功"
+            db.execute(
+                'UPDATE invoice SET invoice_title = ?, serial_num = ?' 
+                ' WHERE user_id = ?',
+                (title, serial, user_id)
+            )
+            db.commit()
+        flash(error)
+        return render_template('manage/fee.html')
+    if request.method == 'GET':
+        return render_template('manage/fee.html')
 
 
 @bp.route('/submit')
@@ -95,6 +118,12 @@ def pay():
 def submit():
     user_id = session.get('user_id')
     db = get_db()
+    user = db.execute(
+        'SELECT paid FROM user WHERE id = ?', (user_id,)
+    ).fetchone()
+    if user["paid"] == "False":
+        return redirect(url_for('manage.index'))
+    
     abstract = db.execute(
         'SELECT id, filename, created, state FROM abstract WHERE user_id = ?', (user_id,)
     ).fetchone() 

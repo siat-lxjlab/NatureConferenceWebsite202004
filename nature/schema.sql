@@ -31,20 +31,16 @@ CREATE TABLE user (
     title INTEGER NOT NULL,
     -- 邮寄地址(发票、邀请函)
     address TEXT NULL,
-    -- 发票抬头
-    invoice_title TEXT DEFAULT NULL,
-    -- 纳税人识别号
-    serial_num TEXT DEFAULT NULL, 
     -- 用户创建时间
     created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     -- 是否需要看孩子
-    requirement_baby_care BOOLEAN NOT NULL DEFAULT FALSE,
+    requirement_baby_care BOOLEAN NOT NULL DEFAULT False,
     -- 是否需要同声传译
-    requirement_simultaneous_transmission BOOLEAN NOT NULL DEFAULT FALSE,
+    requirement_simultaneous_transmission BOOLEAN NOT NULL DEFAULT False,
     -- 是否缴费完成
-    paid BOOLEAN NOT NULL DEFAULT FALSE,
+    paid BOOLEAN NOT NULL DEFAULT False,
     -- 是否提交摘要
-    submit BOOLEAN NOT NULL DEFAULT FALSE,
+    submit BOOLEAN NOT NULL DEFAULT False,
     -- 备用1
     remark1 TEXT NULL,
     -- 备用2
@@ -68,6 +64,10 @@ CREATE TABLE abstract (
 
 CREATE TABLE invoice (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
+    -- 发票抬头
+    invoice_title TEXT DEFAULT NULL,
+    -- 纳税人识别号
+    serial_num TEXT DEFAULT NULL, 
     created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     user_id INTEGER NOT NULL,
     FOREIGN KEY (user_id) REFERENCES user (id)

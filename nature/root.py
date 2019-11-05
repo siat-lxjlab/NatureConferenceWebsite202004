@@ -156,6 +156,54 @@ def abstract_examine_no(id):
     return redirect(url_for('admin.abstract'))
 
 
+@bp.route('/paid/yes/<int:id>', methods=('GET', 'POST'))
+@login_required
+def pay_examine_yes(id):
+    db = get_db()
+    user = db.execute(
+        'SELECT * FROM user WHERE id = ?', (id,)
+    ).fetchone()
+
+    if user is None:
+        abort(404)  
+    else:
+        db.execute(
+            'UPDATE user SET paid = ? WHERE id = ?',
+            ("True", id)
+        )
+        db.commit()   
+        db.execute(
+            "INSERT INTO invoice (user_id) VALUES( ? ) ", (id, )
+        )       
+        db.commit()   
+    return redirect(url_for('admin.guest'))
+
+
+@bp.route('/paid/no/<int:id>', methods=('GET', 'POST'))
+@login_required
+def pay_examine_no(id):
+    print(type(id))
+    db = get_db()
+    user = db.execute(
+        'SELECT * FROM user WHERE id = ?', (id, )
+    ).fetchone()
+
+    if user is None:
+        abort(404)  
+    else:
+        db.execute(
+            'UPDATE user SET paid = ? WHERE id = ?',
+            ("False", id)
+        )
+        db.commit()        
+        db.execute(
+            "DELETE FROM invoice WHERE user_id = ? ", (id, )
+        )       
+        db.commit()     
+    return redirect(url_for('admin.guest'))
+
+
+
 @bp.route('/fee', methods=('GET', 'POST'))
 @login_required
 def fee():
@@ -163,10 +211,11 @@ def fee():
     invoices = db.execute(
         'SELECT * FROM invoice'
     ).fetchall()
+    invoices_data = list()
     for invoice in invoices:
         user = invoice["user_id"]
         name = db.execute(
             'SELECT * FROM user WHERE id = ?', (user,)
         ).fetchone()["name"]
-        invoice["user_id"] = name
-    return render_template('root/fee.html', invoices=invoices)
+        invoices_data.append(dict(user_id=name, created=invoice["created"], invoice_title=invoice["invoice_title"], serial_num=invoice["serial_num"]))
+    return render_template('root/fee.html', invoices=invoices_data)
