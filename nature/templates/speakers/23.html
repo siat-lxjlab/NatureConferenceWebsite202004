@@ -6,7 +6,7 @@
             <div class="col-md-4 col-lg-3 col-sm-6 p-3 bg-light border-right border-bottom">
                 <img src="{{url_for('static', filename='img/23.png')}}" class="card-img img-fluid rounded-circle" alt="...">
             </div>
-            <div class="col-md-8 col-lg-9 col-sm-6 p-3 bg-light">
+            <div id="speaker" class="col-md-8 col-lg-9 col-sm-6 p-3 bg-light">
                 <h5>
                     Andrew Schwartz
                 </h5>
@@ -16,4 +16,25 @@
             </div>
         </div>
     </div>
+{% endblock %}
+{% block script %}
+var ua = navigator.userAgent.toLocaleLowerCase();
+    var pf = navigator.platform.toLocaleLowerCase();
+    var isAndroid = (/android/i).test(ua)||((/iPhone|iPod|iPad/i).test(ua) && (/linux/i).test(pf))
+        || (/ucweb.*linux/i.test(ua));
+    var isIOS =(/iPhone|iPod|iPad/i).test(ua) && !isAndroid;
+    var isWinPhone = (/Windows Phone|ZuneWP7/i).test(ua);
+
+    var mobileType = {
+        pc:!isAndroid && !isIOS && !isWinPhone,
+        ios:isIOS,
+        android:isAndroid,
+        winPhone:isWinPhone
+    };
+
+    if(!mobileType.pc){
+        (function(){
+            $('html,body').animate({scrollTop:$("#speaker").offset().top}, 100);
+            })();
+    }
 {% endblock %}

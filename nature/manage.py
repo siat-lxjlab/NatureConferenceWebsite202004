@@ -128,11 +128,3 @@ def submit():
         'SELECT id, filename, created, state FROM abstract WHERE user_id = ?', (user_id,)
     ).fetchone() 
     return render_template('manage/submit.html', abstract = abstract)
-
-
-# @bp.route('/registration')
-# @login_required
-# def update_registration():
-#     db = get_db()
-#     # db.execute()
-#     return render_template('manage/registration.html')

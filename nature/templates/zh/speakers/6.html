@@ -6,7 +6,7 @@
         <div class="col-md-4 col-lg-3 col-sm-6 p-3 bg-light border-right border-bottom">
             <img src="{{url_for('static', filename='img/6.png')}}" class="card-img img-fluid rounded-circle" alt="...">
         </div>
-        <div class="col-md-8 col-lg-9 col-sm-6 p-3 bg-light">
+        <div id="speaker" class="col-md-8 col-lg-9 col-sm-6 p-3 bg-light">
             <h5>Gaurav Sharma</h5>
             <p>美国 Battelle 纪念研究所资深研究员。
                 主要研究领域：介入式医疗技术和器械。包括运动康复和跨血脑屏障药物递送技术。领导多项创新性神经调控技术的研发并推动产业转化。
@@ -14,4 +14,25 @@
         </div>
     </div>
 </div>
+{% endblock %}
+{% block script %}
+var ua = navigator.userAgent.toLocaleLowerCase();
+    var pf = navigator.platform.toLocaleLowerCase();
+    var isAndroid = (/android/i).test(ua)||((/iPhone|iPod|iPad/i).test(ua) && (/linux/i).test(pf))
+        || (/ucweb.*linux/i.test(ua));
+    var isIOS =(/iPhone|iPod|iPad/i).test(ua) && !isAndroid;
+    var isWinPhone = (/Windows Phone|ZuneWP7/i).test(ua);
+
+    var mobileType = {
+        pc:!isAndroid && !isIOS && !isWinPhone,
+        ios:isIOS,
+        android:isAndroid,
+        winPhone:isWinPhone
+    };
+
+    if(!mobileType.pc){
+        (function(){
+            $('html,body').animate({scrollTop:$("#speaker").offset().top}, 100);
+            })();
+    }
 {% endblock %}
