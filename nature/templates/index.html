@@ -1,7 +1,15 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="container">
+<div class="jumbotron">
+    <img src="{{url_for('static', filename='img/anatureconference.png')}}" alt="">
+    <hr class="my-2">
+    <p class="lead">
+        <a class="btn btn-primary btn-lg" href="/manage/index" role="button">Purchase Pass</a>
+    </p>
+</div>
+
+<!-- <div class="container">
     <div class="row">
         <div id="poster" class="container jumbotron text-center flex-column mt-3">
             <div class="row m-5 py-5 rounded">
@@ -97,5 +105,5 @@
             </footer>
         </div>
     </section>
-</div>
+</div> -->
 {% endblock %}
