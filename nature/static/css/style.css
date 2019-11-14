@@ -62,3 +62,9 @@ button{
 .t {
     color: rgb(122, 146, 190);
 }
+
+.img-responsive{
+    display: block;
+    height: auto;
+    max-width: 99%;
+}

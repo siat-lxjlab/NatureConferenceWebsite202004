@@ -1,28 +1,29 @@
 <!doctype html>
 <title>{% block title %}{% endblock %}</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="shortcut icon" href="{{ url_for('static', filename='img/brain_favicon.ico')}}" />
 <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css')}}">
 <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}">
 <script src="{{ url_for('static', filename='js/jquery.min.js')}}"></script>
 <script src="{{ url_for('static', filename='js/popper.min.js')}}"></script>
-<script src="{{ url_for('static', filename='js/aos.js')}}"></script>
-<script src="{{ url_for('static', filename='js/flickity-fade.js')}}"></script>
-<script src="{{ url_for('static', filename='js/flickity.pkgd.min.js')}}"></script>
 <script src="{{ url_for('static', filename='js/highlight.pack.min.js')}}"></script>
 <script src="{{ url_for('static', filename='js/jquery.fancybox.min.js')}}"></script>
 <script src="{{ url_for('static', filename='js/smooth-scroll.min.js')}}"></script>
-<script src="{{ url_for('static', filename='js/theme.min.js')}}"></script>
 <script src="{{ url_for('static', filename='js/typed.min.js')}}"></script>
 <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js')}}"></script>
 <script src="{{ url_for('static', filename='js/all.js')}}"></script>
 <script>
-  AOS.init({duration: 1200});
+  // AOS.init({duration: 1200});
 </script>
+
 <body>
-<nav class="navbar navbar-light navbar-expand-lg bg-white sticky-top">
+  <div class="row">
+    <img src="{{ url_for('static', filename='img/Title.png') }}" class="img-responsive">
+  </div>
+  <nav class="navbar navbar-light navbar-expand-lg bg-white sticky-top">
     <div class="container-fluid">
       <a class="navbar-brand" href="/"><img src="{{ url_for('static', filename='img/Brain_32.png') }}"></a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar"> 
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">
         <span class="navbar-toggler-icon">
         </span>
       </button>
@@ -41,7 +42,8 @@
             <a class="py-2" href="/zh">住宿安排</a>
           </li>
           <li class="nav-item dropdown mr-4">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">语言</a>
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+              aria-expanded="false">语言</a>
             <div class="dropdown-menu">
               <a class="dropdown-item" href="/">English</a>
               <div class="dropdown-divider"></div>
@@ -50,29 +52,29 @@
           </li>
         </ul>
 
-            {% if g.user %}
-              <!-- <li class="nav-item"><span class="nav-link">{{ g.user['username'] }}</span> -->
+        {% if g.user %}
+        <!-- <li class="nav-item"><span class="nav-link">{{ g.user['username'] }}</span> -->
 
-                <a class="nav-link" href="{{ url_for('auth.logout') }}">
-                  <button class="btn btn-white">注销</button>
-                </a>
+        <a class="nav-link" href="{{ url_for('auth.logout') }}">
+          <button class="btn btn-white">注销</button>
+        </a>
 
-            {% else %}
-            <a class="navbar-btn" href="{{ url_for('auth.login') }}">
-              登录              
-            </a>
-            <a class="navbar-btn btn btn-sm btn-primary ml-1" href="{{ url_for('auth.register') }}">
-              注册            
-            </a>
-            {% endif %}
-          
+        {% else %}
+        <a class="navbar-btn" href="{{ url_for('auth.login') }}">
+          登录
+        </a>
+        <a class="navbar-btn btn btn-sm btn-primary ml-1" href="{{ url_for('auth.register') }}">
+          注册
+        </a>
+        {% endif %}
+
       </div>
-  </div>
-</nav>
-{% block content %}
-{% endblock %}
-<script>
-{% block script %}
-{% endblock %}
-</script>
+    </div>
+  </nav>
+  {% block content %}
+  {% endblock %}
+  <script>
+    {% block script %}
+    {% endblock %}
+  </script>
 </body>
