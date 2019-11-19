@@ -81,29 +81,29 @@ def create_app(test_config=None):
 
     @app.route('/zh')
     def zh():
-        return redirect(url_for('manage.index'))
+        # return redirect(url_for('manage.index'))
         return render_template('zh/index.html')
 
     @app.route('/zh/speakers')
     def zh_speaker():
-        return redirect(url_for('manage.index'))
+        # return redirect(url_for('manage.index'))
         return render_template('zh/speakers/leading.html')
 
     @app.route('/zh/speakers/leading')
     def get_zh_leadingspeakers():
-        return redirect(url_for('manage.index'))
+        # return redirect(url_for('manage.index'))
         return render_template('zh/speakers/leading.html')
 
     @app.route('/zh/speakers/part/<int:part_num>')
     def get_zh_speakers_bypart(part_num):
         if part_num < 1 or part_num > 4:
             abort(404) 
-        return redirect(url_for('manage.index'))
+        # return redirect(url_for('manage.index'))
         return render_template('zh/speakers/part%d.html'%part_num)
 
     @app.route('/zh/speakers/<int:speaker_num>')
     def get_zh_speaker_bynum(speaker_num):
-        return redirect(url_for('manage.index'))
+        # return redirect(url_for('manage.index'))
         if speaker_num > 23 or speaker_num < 1:
             abort(404) 
         return render_template('zh/speakers/%d.html'%speaker_num)

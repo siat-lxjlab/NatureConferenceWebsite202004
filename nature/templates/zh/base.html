@@ -18,7 +18,7 @@
 
 <body>
   <div class="row">
-    <img src="{{ url_for('static', filename='img/Title.png') }}" class="img-responsive">
+    <img src="{{ url_for('static', filename='img/Title.png') }}" class="img-responsive" id="title">
   </div>
   <nav class="navbar navbar-light navbar-expand-lg bg-white sticky-top">
     <div class="container-fluid">
@@ -75,6 +75,25 @@
   {% endblock %}
   <script>
     {% block script %}
+    var ua = navigator.userAgent.toLocaleLowerCase();
+    var pf = navigator.platform.toLocaleLowerCase();
+    var isAndroid = (/android/i).test(ua)||((/iPhone|iPod|iPad/i).test(ua) && (/linux/i).test(pf))
+        || (/ucweb.*linux/i.test(ua));
+    var isIOS =(/iPhone|iPod|iPad/i).test(ua) && !isAndroid;
+    var isWinPhone = (/Windows Phone|ZuneWP7/i).test(ua);
+
+    var mobileType = {
+        pc:!isAndroid && !isIOS && !isWinPhone,
+        ios:isIOS,
+        android:isAndroid,
+        winPhone:isWinPhone
+    };
+
+    if(!mobileType.pc){
+        (function(){
+            $('#title').attr("src", "/static/img/Title_mobile.png");
+            })();
+    }
     {% endblock %}
   </script>
 </body>
